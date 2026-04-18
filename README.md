@@ -55,12 +55,27 @@ git clone https://github.com/dcarll/agendamento_de_transmissoes.git
 cd agendamento_de_transmissoes
 ```
 
-2. Instale as dependências:
+2. Crie um ambiente virtual:
+```bash
+python -m venv venv
+```
+
+3. Ative o ambiente virtual:
+*Windows:*
+```bash
+venv\Scripts\activate
+```
+*Linux/macOS:*
+```bash
+source venv/bin/activate
+```
+
+4. Instale as dependências:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Execute a aplicação:
+5. Execute a aplicação:
 ```bash
 python main.py
 ```
