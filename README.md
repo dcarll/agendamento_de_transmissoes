@@ -22,11 +22,12 @@ O sistema oferece uma interface intuitiva e fluida, com sincronização em tempo
 
 ## ✨ Funcionalidades Principais
 
+*   **🎨 Gerador de Capas:** Criação de thumbnails para YouTube (1280x720) com visualização em tempo real, ajuste de fontes, cores, posição e imagem de fundo.
 *   **📊 Dashboard:** Visão geral das transmissões recentes e estatísticas rápidas.
 *   **📅 Calendário Inteligente:** Visualização em lista ou grade com filtros avançados por status, período, modalidade e tipo.
 *   **📝 Gerenciamento Completo:** Criação, edição e exclusão de transmissões com validação de dados.
 *   **⏳ Histórico:** Acesso rápido a todos os eventos passados de forma organizada.
-*   **📈 Relatórios:** Geração de relatórios detalhados para análise de produtividade e uso.
+*   **📈 Relatórios e Exportação:** Geração de relatórios detalhados em Excel e exportação de listas de links em Word (DOCX).
 *   **🔄 Sincronização em Tempo Real:** Sistema de PubSub integrado que atualiza a interface automaticamente quando mudanças ocorrem.
 *   **🌙 Modo Escuro:** Interface otimizada para conforto visual.
 
@@ -36,8 +37,10 @@ O sistema oferece uma interface intuitiva e fluida, com sincronização em tempo
 
 - **[Python](https://www.python.org/):** Linguagem base.
 - **[Flet](https://flet.dev/):** Framework para interface rica baseada em Flutter.
-- **SQLite:** Armazenamento local persistente e eficiente.
-- **OpenPyXL:** Manipulação de arquivos Excel para geração de relatórios.
+- **[Pillow](https://python-pillow.org/):** Processamento de imagens para o gerador de capas.
+- **[OpenPyXL](https://openpyxl.readthedocs.io/):** Manipulação de arquivos Excel.
+- **[python-docx](https://python-docx.readthedocs.io/):** Geração de documentos Word.
+- **JSON:** Armazenamento local persistente e eficiente.
 
 ---
 

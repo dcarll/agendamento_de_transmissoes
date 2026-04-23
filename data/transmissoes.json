@@ -1,0 +1,1231 @@
+[
+  {
+    "evento": "VIII Ciclo de Formação e Desenvolvimento Docente: Mesa Abertura e Reflexão: A Nova Geração na Universidade e o Caminho do Aprimoramento Docente ",
+    "data": "2026-01-27",
+    "horario_inicio": "08:30",
+    "horario_fim": "10:26",
+    "responsavel": "Prof. Cláudio Ganda de Souza",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/6bykm2vi4r",
+    "link_youtube": "https://www.youtube.com/watch?v=MBStV0hQOHM",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "01:56:00",
+    "publico": 76,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-10 11:13:31",
+    "id": "59a2cabb-4433-4ca5-805d-92e045eb2e99"
+  },
+  {
+    "evento": "Jessup Brazil National",
+    "data": "2026-02-04",
+    "horario_inicio": "18:00",
+    "horario_fim": "19:17",
+    "responsavel": "Profa. Clarisse Laupman Ferraz Lima",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/inuc99nvn2",
+    "link_youtube": "https://www.youtube.com/watch?v=d5kdkAGXqPM",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "01:17:00",
+    "publico": 104,
+    "operador": "Renan",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-10 11:16:42",
+    "id": "f2ddc579-810b-4723-8b5b-ba190488a713"
+  },
+  {
+    "evento": "A Psicopedagogia e a Adolescência Indicadores de Assistência a Adolescentes",
+    "data": "2026-02-23",
+    "horario_inicio": "19:00",
+    "horario_fim": "21:04",
+    "responsavel": "Profa. Maria Anita Vivivani Martins",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/3qzeqnug8c",
+    "link_youtube": "https://www.youtube.com/live/g_pE95B90x0?si=9zZu57YNr4D3MwLa",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "02:04:00",
+    "publico": 198,
+    "operador": "Orlando/Renan",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "Even3",
+        "url": "https://eventos.pucsp.br/psicopedagogia-e-a-adolescencia/"
+      }
+    ],
+    "data_criacao": "2026-04-10 11:18:59",
+    "id": "faaf40a0-5a66-4f3f-be50-afa411b32e3d"
+  },
+  {
+    "evento": "Ecologia da Comunicação - Estudos Chineses",
+    "data": "2026-02-26",
+    "horario_inicio": "09:30",
+    "horario_fim": "12:15",
+    "responsavel": "Prof. Claudir Segura",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Presencial",
+    "local": "Auditório 117A",
+    "link_stream": "https://streamyard.com/efd8i4nyzk",
+    "link_youtube": "https://www.youtube.com/watch?v=d7LIuWwgtPg",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "02:45:00",
+    "publico": 122,
+    "operador": "Humberto/Diego",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-10 11:22:03",
+    "id": "30147154-214e-492b-95e5-aa141b1bffc4"
+  },
+  {
+    "evento": "Política de Ciência Tecnologia no Brasil ",
+    "data": "2026-02-27",
+    "horario_inicio": "09:30",
+    "horario_fim": "12:12",
+    "responsavel": "Prof. José Luiz Goldfarb",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Presencial",
+    "local": "Auditório 333",
+    "link_stream": "https://streamyard.com/6venmihsri",
+    "link_youtube": "https://www.youtube.com/watch?v=JnD4NCaAfVk",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "02:42:00",
+    "publico": 69,
+    "operador": "Humberto/Diego",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-10 15:10:17",
+    "id": "12bf302b-d19b-4da6-95a2-dc10d509920f"
+  },
+  {
+    "evento": "Direitos Humanos - Escritório Modelo",
+    "data": "2026-02-27",
+    "horario_inicio": "10:15",
+    "horario_fim": "12:15",
+    "responsavel": "Dr. Vitor Goulart Nery",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "Auditório Central",
+    "link_stream": "https://streamyard.com/v2wr6q8hqb",
+    "link_youtube": "https://www.youtube.com/watch?v=AA81g6l38SQ",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "02:00:00",
+    "publico": 82,
+    "operador": "Humberto/Diego",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-10 11:25:20",
+    "id": "65452647-bead-4edb-b685-d026c6f1d507"
+  },
+  {
+    "evento": "A Urgência de Uma Governança de IA no Ensino Superior (Marques de Paranagua)",
+    "data": "2026-02-27",
+    "horario_inicio": "16:00",
+    "horario_fim": "18:10",
+    "responsavel": "Leila Houf Marreiro",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "Auditório Central",
+    "link_stream": "https://streamyard.com/hc3vrjhj46",
+    "link_youtube": "https://www.youtube.com/live/LU1RtFAB968?si=fzY0gliMIPu5re07",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "02:10:00",
+    "publico": 207,
+    "operador": "Renan",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-10 11:32:09",
+    "id": "b7edbdbf-31ec-44ec-b40d-022ab2ebf5c0"
+  },
+  {
+    "evento": "LaborVox convida - Saúde do Trabalhador nos dias atuais e perspectivas",
+    "data": "2026-03-10",
+    "horario_inicio": "18:30",
+    "horario_fim": "20:34",
+    "responsavel": "Profa. Léslie Piccolotto Ferreira",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/wxu9y32meq",
+    "link_youtube": "https://www.youtube.com/live/JMIWicSbg0w?si=ozgXNj4cGtDfN-ka",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "02:04:00",
+    "publico": 68,
+    "operador": "Orlando",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/fono-em-foco-2026-674735"
+      }
+    ],
+    "data_criacao": "2026-04-10 14:25:05",
+    "id": "1a4fd49b-e5b0-4141-ad23-12eea4dc5693"
+  },
+  {
+    "evento": "4º Simpósio Internacional da Literatura de Berço – Interartes como gesto de presença",
+    "data": "2026-03-10",
+    "horario_inicio": "19:30",
+    "horario_fim": "21:28",
+    "responsavel": "Profa. Diana Navas",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/q2gjjqh39r",
+    "link_youtube": "https://www.youtube.com/watch?v=kKg_VAXp1eA",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "01:58:00",
+    "publico": 214,
+    "operador": "Orlando/Renan",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/4-simposio-internacional-da-literatura-de-berco/"
+      }
+    ],
+    "data_criacao": "2026-04-10 14:47:58",
+    "id": "0fd89c13-60f9-42dc-b224-bf9ab0f2925c"
+  },
+  {
+    "evento": "Fono em Foco- Prática Fonoaudiológica na UTI Neonatal",
+    "data": "2026-03-18",
+    "horario_inicio": "19:30",
+    "horario_fim": "20:48",
+    "responsavel": "Profa. Léslie Piccolotto Ferreira",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/dv9tegd5ja",
+    "link_youtube": "https://www.youtube.com/live/_fowXJpgC88?si=Y3NwGqWR3LzUcWOK",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "01:18:00",
+    "publico": 178,
+    "operador": "Orlando/Renan",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/fono-em-foco-2026-674735"
+      }
+    ],
+    "data_criacao": "2026-04-10 14:28:17",
+    "id": "267411f6-b227-4bd4-8819-3bc6674d4d01"
+  },
+  {
+    "evento": "Encontro Internacional de Literatura e Cinema - Literatura e Roteiro: A palavra que se transforma em imagem / Da página à tela: processos de adaptação literária",
+    "data": "2026-03-24",
+    "horario_inicio": "08:30",
+    "horario_fim": "11:01",
+    "responsavel": "Profa. Elisabete Alfeld",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/v78xptgrn6",
+    "link_youtube": "https://www.youtube.com/embed/4S144gVDSuk",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "02:31:00",
+    "publico": 69,
+    "operador": "Humberto",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/encontro-int-literatura-cinema"
+      }
+    ],
+    "data_criacao": "2026-04-10 14:50:13",
+    "id": "73f18645-2f71-4ca1-8bb0-5cea89dcefe6"
+  },
+  {
+    "evento": "Encontro Internacional de Literatura e Cinema: Autores que viraram roteiristas e vice-versa: experiências e desafios",
+    "data": "2026-03-24",
+    "horario_inicio": "11:15",
+    "horario_fim": "12:30",
+    "responsavel": "Elisabete Alfeld",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/k38jcd8m6c",
+    "link_youtube": "https://www.youtube.com/embed/ZGI2hOSaMKM",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "01:15:00",
+    "publico": 41,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/encontro-int-literatura-cinema"
+      }
+    ],
+    "data_criacao": "2026-04-10 14:52:06",
+    "id": "e2070417-903b-4b75-959e-d97c61a50053"
+  },
+  {
+    "evento": "Encontro Internacional de Literatura e Cinema: Narrativa visual: como transformar cenas literárias em roteiro",
+    "data": "2026-03-24",
+    "horario_inicio": "14:00",
+    "horario_fim": "15:30",
+    "responsavel": "Elisabete Alfeld",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/ex6wkmg7wj",
+    "link_youtube": "https://www.youtube.com/embed/q1yJ4pCUh0I",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "01:30:00",
+    "publico": 38,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/encontro-int-literatura-cinema"
+      }
+    ],
+    "data_criacao": "2026-04-10 14:55:31",
+    "id": "cd020e06-a44f-4c4f-aa70-aa0e48bf584b"
+  },
+  {
+    "evento": "Encontro Internacional de Literatura e Cinema: Livros adaptados ou que dialogam com o cinema",
+    "data": "2026-03-24",
+    "horario_inicio": "15:45",
+    "horario_fim": "19:00",
+    "responsavel": "Elisabete Alfeld",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/32bwz65wii",
+    "link_youtube": "https://www.youtube.com/embed/no26LqKSL_A",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "03:15:00",
+    "publico": 55,
+    "operador": "Renan",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/encontro-int-literatura-cinema"
+      }
+    ],
+    "data_criacao": "2026-04-10 14:56:42",
+    "id": "2d27ce24-7ee7-4aee-af92-351366b6be6f"
+  },
+  {
+    "evento": "Encontro Internacional de Literatura e Cinema: O cinema que escreve: quando o filme inspira livros e ensaios",
+    "data": "2026-03-25",
+    "horario_inicio": "08:30",
+    "horario_fim": "10:39",
+    "responsavel": "Elisabete Alfeld",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://eventos.pucsp.br/encontro-int-literatura-cinema",
+    "link_youtube": "https://www.youtube.com/embed/veoqs2QnuzY",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "02:09:00",
+    "publico": 41,
+    "operador": "Humberto",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/encontro-int-literatura-cinema"
+      }
+    ],
+    "data_criacao": "2026-04-10 14:58:07",
+    "id": "26748edc-1515-4cf6-a798-3eaaee90e65a"
+  },
+  {
+    "evento": "Encontro Internacional de Literatura e Cinema: Crítica literária e crítica cinematográfica: diálogos possíveis",
+    "data": "2026-03-25",
+    "horario_inicio": "10:45",
+    "horario_fim": "12:30",
+    "responsavel": "Profa. Elisabete Alfeld",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/ecd7g5xjp8",
+    "link_youtube": "https://www.youtube.com/embed/VPhDPLzdtD0",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "01:45:00",
+    "publico": 59,
+    "operador": "Humberto",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/encontro-int-literatura-cinema"
+      }
+    ],
+    "data_criacao": "2026-04-10 15:08:34",
+    "id": "85de784c-7240-47ec-8fc9-7028aedfa0b3"
+  },
+  {
+    "evento": "Violência contra a mulher: vamos conversar?",
+    "data": "2026-03-25",
+    "horario_inicio": "13:30",
+    "horario_fim": "15:40",
+    "responsavel": "Prof. Fábio Mariano",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/54zuyh3zce",
+    "link_youtube": "https://www.youtube.com/watch?v=C0c8kW_pT8M",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "02:10:00",
+    "publico": 47,
+    "operador": "Renan",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-10 15:04:27",
+    "id": "9f6621e3-12c4-45c4-af2a-a26add3ab98e"
+  },
+  {
+    "evento": "Encontro Internacional de Literatura e Cinema: Da literatura ao cinema: um estudo da adaptação cinematográfica de Hamnet: A Vida Antes de Hamlet",
+    "data": "2026-03-25",
+    "horario_inicio": "14:00",
+    "horario_fim": "16:00",
+    "responsavel": "Elisabete Alfeld",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/t84czybrc6",
+    "link_youtube": "https://www.youtube.com/watch?v=DxZPALFwSq4",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "02:00:00",
+    "publico": 48,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/encontro-int-literatura-cinema"
+      }
+    ],
+    "data_criacao": "2026-04-10 15:02:44",
+    "id": "12a8dff2-87b1-4892-ab74-e04301469e9e"
+  },
+  {
+    "evento": "Encontro Internacional de Literatura e Cinema- Obras críticas sobre cinema, coletâneas de ensaios ou romances que dialogam com a linguagem fílmica",
+    "data": "2026-03-25",
+    "horario_inicio": "16:00",
+    "horario_fim": "18:00",
+    "responsavel": "Profa. Elisabete Alfeld",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/ahfz7i38n4",
+    "link_youtube": "https://www.youtube.com/embed/bQH24LSwjk0",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "02:00:00",
+    "publico": 52,
+    "operador": "Orlando",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/encontro-int-literatura-cinema"
+      }
+    ],
+    "data_criacao": "2026-04-10 15:06:19",
+    "id": "e8a2af5b-d0d3-4e07-9fbd-ee67fd33543f"
+  },
+  {
+    "evento": "Encontro Internacional de Literatura e Cinema: O cinema brasileiro e sua importância no mundo de hoje: do filme nacional para o melhor filme internacional  /  Encerramento",
+    "data": "2026-03-25",
+    "horario_inicio": "18:00",
+    "horario_fim": "19:30",
+    "responsavel": "Elisabete Alfeld",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/ecd7g5xjp8",
+    "link_youtube": "https://www.youtube.com/embed/dF00zhy1aS4",
+    "status": "Finalizado (Fase 5)",
+    "tempo_total": "01:30:00",
+    "publico": 54,
+    "operador": "Renan",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/encontro-int-literatura-cinema"
+      }
+    ],
+    "data_criacao": "2026-04-10 15:00:55",
+    "id": "da627734-3577-46b3-8c50-a5cb6d6e1c0f"
+  },
+  {
+    "evento": "LaborVox convida - Detecção precoce de sintomas vocais: uma aproximação multicêntrica",
+    "data": "2026-04-14",
+    "horario_inicio": "19:00",
+    "horario_fim": "20:30",
+    "responsavel": "Profa. Léslie Piccolotto Ferreira",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "Auditório Central",
+    "link_stream": "https://streamyard.com/62cvqeehrp",
+    "link_youtube": "https://www.youtube.com/live/3bQc0M1VSps?si=-wfgp_R2FZVcUFYG",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-13 09:43:45",
+    "id": "8333d62d-bd00-4412-8ef5-615bc660e9a9"
+  },
+  {
+    "evento": "LIGA DE FONO -  Verificação de Aparelho de Amplificação Sonora Individual",
+    "data": "2026-04-15",
+    "horario_inicio": "19:00",
+    "horario_fim": "20:30",
+    "responsavel": "Profa. Tereza Loffredo Bilton",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/kamxq9zqvy",
+    "link_youtube": "https://www.youtube.com/live/eakfxj0UwNI?si=VbpaDdrGcYSd1r4l",
+    "status": "Cancelado",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-13 09:46:27",
+    "id": "e1c3b253-3543-40bb-8135-4dbf570f99f1"
+  },
+  {
+    "evento": "Apresentação do Coral - Derdic",
+    "data": "2026-04-17",
+    "horario_inicio": "09:00",
+    "horario_fim": "11:00",
+    "responsavel": "Sibele Matsubara",
+    "tipo_transmissao": "OBS+YOUTUBE",
+    "modalidade": "Presencial",
+    "local": "Saguão d Recepção da Derdic",
+    "link_stream": "",
+    "link_youtube": "https://youtube.com/live/o3azK7Jd4jw?feature=share",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "02:00:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-13 09:48:14",
+    "id": "47f6147d-3f24-4f4e-8d6f-7713adf72e7f"
+  },
+  {
+    "evento": "II  Jornada de Literatura de Autoria Feminina (Ela/Dela)",
+    "data": "2026-04-22",
+    "horario_inicio": "14:00",
+    "horario_fim": "20:00",
+    "responsavel": "Profa. Elizabeth da Penha Cardoso",
+    "tipo_transmissao": "YouTube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "",
+    "link_youtube": "",
+    "status": "Aguardando (Fase 1)",
+    "tempo_total": "06:00:00",
+    "publico": 0,
+    "operador": "",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-13 09:52:10",
+    "id": "d4ecb798-bd0d-4b6a-86f2-352de845a9e6"
+  },
+  {
+    "evento": "II  Jornada de Literatura de Autoria Feminina (Ela/Dela)",
+    "data": "2026-04-23",
+    "horario_inicio": "14:00",
+    "horario_fim": "20:00",
+    "responsavel": "Profa. Elizabeth da Penha Cardoso",
+    "tipo_transmissao": "YouTube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "",
+    "link_youtube": "",
+    "status": "Aguardando (Fase 1)",
+    "tempo_total": "06:00:00",
+    "publico": 0,
+    "operador": "",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-13 09:53:14",
+    "id": "20725b8e-4332-4e7f-bc27-b92ebb211ebe"
+  },
+  {
+    "evento": "II  Jornada de Literatura de Autoria Feminina (Ela/Dela)",
+    "data": "2026-04-24",
+    "horario_inicio": "09:00",
+    "horario_fim": "11:00",
+    "responsavel": "Profa. Elizabeth da Penha Cardoso",
+    "tipo_transmissao": "YouTube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "",
+    "link_youtube": "",
+    "status": "Agendado (Fase 1)",
+    "tempo_total": "02:00:00",
+    "publico": 0,
+    "operador": "",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-13 09:53:52",
+    "id": "959554e5-0714-4269-bfc2-0a937b468144"
+  },
+  {
+    "evento": "Escrever em Perspectiva Socio-interacional",
+    "data": "2026-04-25",
+    "horario_inicio": "09:00",
+    "horario_fim": "10:30",
+    "responsavel": "Profa. Sueli Cristina Marquesi",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "",
+    "link_youtube": "",
+    "status": "Aguardando (Fase 1)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-13 09:54:47",
+    "id": "1c080fb6-862e-49cd-8481-d5fea0684185"
+  },
+  {
+    "evento": "Núcleo de Estudos e Pesquisa em Movimentos Sociais",
+    "data": "2026-04-27",
+    "horario_inicio": "14:30",
+    "horario_fim": "18:30",
+    "responsavel": "Profa. Priscila Beralda",
+    "tipo_transmissao": "YouTube",
+    "modalidade": "Online",
+    "local": "Auditório Central",
+    "link_stream": "",
+    "link_youtube": "",
+    "status": "Cancelado",
+    "tempo_total": "04:00:00",
+    "publico": 0,
+    "operador": "Orlando/Renan",
+    "observacoes": "",
+    "links_adicionais": [],
+    "data_criacao": "2026-04-13 12:56:49",
+    "id": "262e8f26-fd80-4bf0-8acf-6cf3cccc373d"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Abertura / Momento Espiritualidade / Conferência parte 1",
+    "data": "2026-04-29",
+    "horario_inicio": "08:00",
+    "horario_fim": "09:15",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/yneg2hdws4",
+    "link_youtube": "https://www.youtube.com/watch?v=oVmCXBjCVJY",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:15:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 08:10:27",
+    "id": "619b6889-7a7c-43b0-b5b4-d76c06a1bfd3"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Abertura",
+    "data": "2026-04-29",
+    "horario_inicio": "08:00",
+    "horario_fim": "08:30",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "Auditório Central",
+    "link_stream": "https://streamyard.com/ku4ykzzy85",
+    "link_youtube": "https://www.youtube.com/watch?v=fbCkQbHpY7M",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "00:30:00",
+    "publico": 0,
+    "operador": "Humberto",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:08:06",
+    "id": "4a00b3c0-5210-47f8-b694-2f94e34f57c1"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Conferencia de Abertura",
+    "data": "2026-04-29",
+    "horario_inicio": "08:30",
+    "horario_fim": "10:00",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/piccwy9prc",
+    "link_youtube": "https://www.youtube.com/watch?v=9vlMBJZlH0c",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "Humberto",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:09:33",
+    "id": "19cca6b5-ee46-4389-b040-6b89612e022e"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Conferência parte 2",
+    "data": "2026-04-29",
+    "horario_inicio": "09:25",
+    "horario_fim": "10:25",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/4bwqegqg99",
+    "link_youtube": "https://www.youtube.com/watch?v=E7o1CxYrsYM",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:00:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 08:13:52",
+    "id": "5937bdf4-9305-4ccf-b2c3-fe846ac571f0"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Análise do Discurso",
+    "data": "2026-04-29",
+    "horario_inicio": "10:30",
+    "horario_fim": "12:00",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/j8aihsxxj3",
+    "link_youtube": "https://www.youtube.com/watch?v=NA95oPgRytA",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "Humberto",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:11:11",
+    "id": "ac330faa-f98e-4e84-b150-a90dc1a81ae3"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Ensino de Língua Portuguesa",
+    "data": "2026-04-29",
+    "horario_inicio": "10:30",
+    "horario_fim": "12:00",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/r3tgevwwc8",
+    "link_youtube": "https://www.youtube.com/watch?v=AaT-rR5Ek-M",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "Humberto",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:12:13",
+    "id": "b3412173-b264-4371-9129-8a01c7635d48"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Historiografia e Linguística",
+    "data": "2026-04-29",
+    "horario_inicio": "10:30",
+    "horario_fim": "12:00",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/aewiq6z2c5",
+    "link_youtube": "https://www.youtube.com/watch?v=j-LxrRaCI_Y",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "Humberto",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:16:47",
+    "id": "bcf68e6a-ef68-4b62-b156-18079c091761"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Léxico, Cultura e Lusofonia",
+    "data": "2026-04-29",
+    "horario_inicio": "10:30",
+    "horario_fim": "12:00",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/48irh3k2fg",
+    "link_youtube": "https://www.youtube.com/watch?v=6X9cLPhS4Bg",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "Orlando/Renan",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:22:51",
+    "id": "2f66e194-4fda-496c-be92-b2bcf7f74376"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Diálogo/Interação com participantes",
+    "data": "2026-04-29",
+    "horario_inicio": "11:40",
+    "horario_fim": "12:00",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/f7x5uam8u3",
+    "link_youtube": "https://www.youtube.com/watch?v=fJbkOPAsaxY",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "00:20:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 08:18:56",
+    "id": "a9629c58-3f6d-41ba-94b2-9a0e893a9d30"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Minicursos e Oficinas",
+    "data": "2026-04-29",
+    "horario_inicio": "14:00",
+    "horario_fim": "15:30",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/35ctmay5uv",
+    "link_youtube": "https://www.youtube.com/watch?v=YSU4UWE54J8",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 08:25:45",
+    "id": "017984a8-2a5a-4785-a468-0bcfe5c40f78"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Comunicações Científicas",
+    "data": "2026-04-29",
+    "horario_inicio": "16:00",
+    "horario_fim": "17:00",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "Auditório Central",
+    "link_stream": "https://streamyard.com/wcws9qs7xs",
+    "link_youtube": "https://www.youtube.com/watch?v=A-V4jnDW79M",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:00:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 08:27:01",
+    "id": "79553683-a810-4d45-80b4-0899e906ab18"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Comunicações Científicas",
+    "data": "2026-04-29",
+    "horario_inicio": "16:00",
+    "horario_fim": "17:00",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "Auditório Central",
+    "link_stream": "https://streamyard.com/px3rqe757w",
+    "link_youtube": "https://www.youtube.com/watch?v=ioKZrQMMO9A",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:00:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 09:34:07",
+    "id": "93964ff0-6ac2-4df5-af8e-5f0dc7e83b46"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Lançamento de Livros",
+    "data": "2026-04-29",
+    "horario_inicio": "17:30",
+    "horario_fim": "18:30",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/h4476uw3hr",
+    "link_youtube": "https://www.youtube.com/watch?v=mXvMgPL3YCs",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:00:00",
+    "publico": 0,
+    "operador": "Edwando",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:20:24",
+    "id": "4334f80c-72eb-4e6e-a729-62807b1aa7b7"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Abertura / Momento Espiritualidade / Conferência parte 1 ",
+    "data": "2026-04-30",
+    "horario_inicio": "08:00",
+    "horario_fim": "09:15",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/xm6tpjxtbb",
+    "link_youtube": "https://www.youtube.com/watch?v=44_hs94oYuM",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:15:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 09:23:41",
+    "id": "c714938f-7c03-4ac9-91ed-e1acbe083946"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Conferência parte 2",
+    "data": "2026-04-30",
+    "horario_inicio": "09:25",
+    "horario_fim": "10:25",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/4i4w5xh7nk",
+    "link_youtube": "https://www.youtube.com/watch?v=_M3HvHyosYI",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:00:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 09:27:05",
+    "id": "bdef72e4-c64f-43ca-9842-eeef892bf7b5"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Língua e Literatura",
+    "data": "2026-04-30",
+    "horario_inicio": "10:30",
+    "horario_fim": "12:00",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/rrquu7icwx",
+    "link_youtube": "https://www.youtube.com/watch?v=QhaWLSgmHuc",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "Humberto",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:34:46",
+    "id": "d2b6807c-1b52-4075-a995-56e432bd9192"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Línguistica Textual e Análise dos...",
+    "data": "2026-04-30",
+    "horario_inicio": "10:30",
+    "horario_fim": "12:00",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/zu2qtsxg9b",
+    "link_youtube": "https://www.youtube.com/watch?v=0EeHaSZBrrU",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "Humberto",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:35:54",
+    "id": "f36b46d3-32f9-44ef-84a2-3b64d1d8c11c"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Lusofonia, Língua e Cultura",
+    "data": "2026-04-30",
+    "horario_inicio": "10:30",
+    "horario_fim": "12:00",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/fq7xk8fwh8 ",
+    "link_youtube": "https://www.youtube.com/watch?v=gjeO5MrtfY0",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "Mônica (Aluna)",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:36:51",
+    "id": "2674b815-1410-416e-b365-a1bd48f0e9e8"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Português Língua Estrangeira",
+    "data": "2026-04-30",
+    "horario_inicio": "10:30",
+    "horario_fim": "12:00",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/hxzqn8djdt",
+    "link_youtube": "https://www.youtube.com/watch?v=PrNQF5EPmZk",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "Edwando",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:38:01",
+    "id": "8d118e64-6741-4a1a-8f70-d9d0a627d1e1"
+  },
+  {
+    "evento": "21º Congresso Brasileiro de Língua Portuguesa/12º Congresso Internacional de Lusofonia – IP-PUC-SP - Encerramento",
+    "data": "2026-04-30",
+    "horario_inicio": "10:30",
+    "horario_fim": "12:00",
+    "responsavel": "Profa. Nancy dos Santos Casagrande",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/6xep2zz6kd",
+    "link_youtube": "https://www.youtube.com/watch?v=Uu1WEoR_N7Q",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "Humberto",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      },
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/21-cblp-12-cil/"
+      }
+    ],
+    "data_criacao": "2026-04-15 12:39:08",
+    "id": "f04b2b19-de3a-4d3c-9c01-3c0c229fc91c"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Mesa Redonda",
+    "data": "2026-04-30",
+    "horario_inicio": "10:40",
+    "horario_fim": "11:40",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/4da36q3v2s",
+    "link_youtube": "https://www.youtube.com/watch?v=CDkYTfTFQEM",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:00:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 09:27:06",
+    "id": "4f5f5c76-cfcd-4702-843a-8dae69f85eb3"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Conclusão: Orientções Práticas",
+    "data": "2026-04-30",
+    "horario_inicio": "11:40",
+    "horario_fim": "12:00",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/558wfig9v4",
+    "link_youtube": "https://www.youtube.com/watch?v=SmUEqV38voo",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "00:20:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 09:31:57",
+    "id": "00851ca3-f6dc-49ee-a9a6-ccf7fd5a8747"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Minicursos e Oficinas",
+    "data": "2026-04-30",
+    "horario_inicio": "14:00",
+    "horario_fim": "15:30",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "Auditório Central",
+    "link_stream": "https://streamyard.com/dkudaun5fw",
+    "link_youtube": "https://www.youtube.com/watch?v=PEOFEWOgzM4",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:30:00",
+    "publico": 0,
+    "operador": "",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 09:32:54",
+    "id": "78ae5d12-850b-45b8-945c-96369765469f"
+  },
+  {
+    "evento": "VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Encerramento",
+    "data": "2026-04-30",
+    "horario_inicio": "17:55",
+    "horario_fim": "19:00",
+    "responsavel": "Prof. Gilvan Leite de Araújo",
+    "tipo_transmissao": "StreamYard+Youtube",
+    "modalidade": "Online",
+    "local": "",
+    "link_stream": "https://streamyard.com/e2tfz86fr7",
+    "link_youtube": "https://www.youtube.com/watch?v=3djmW8tl-FA",
+    "status": "Agendado (Fase 4)",
+    "tempo_total": "01:05:00",
+    "publico": 0,
+    "operador": "Diego",
+    "observacoes": "",
+    "links_adicionais": [
+      {
+        "label": "even3",
+        "url": "https://eventos.pucsp.br/vi-simpeb"
+      }
+    ],
+    "data_criacao": "2026-04-14 09:35:23",
+    "id": "55fbac7b-55a4-4c86-a2dc-19cc2f055931"
+  }
+]

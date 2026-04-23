@@ -37,12 +37,12 @@ if %errorlevel% neq 0 (
 exit
 
 :verificar_bibliotecas
-REM Verificacao rapida se as bibliotecas estao instaladas (Flet e Openpyxl)
-python -c "import importlib.util as i; r=['flet','openpyxl']; m=[p for p in r if i.find_spec(p) is None]; exit(1 if m else 0)" >nul 2>&1
+REM Verificacao rapida se as bibliotecas estao instaladas (Flet, Openpyxl, Docx, Pillow)
+python -c "import importlib.util as i; r=['flet','openpyxl','docx','PIL']; m=[p for p in r if i.find_spec(p) is None]; exit(1 if m else 0)" >nul 2>&1
 if %errorlevel% neq 0 (
-    echo [AVISO] Bibliotecas faltando. Instalando requirements.txt...
+    echo [AVISO] Bibliotecas faltando. Instalando dependencias...
     python -m pip install -r requirements.txt
 ) else (
-    echo [OK] Todas as bibliotecas ja estao instaladas.
+    echo [OK] Todas as dependencias ja estao instaladas.
 )
 goto :eof

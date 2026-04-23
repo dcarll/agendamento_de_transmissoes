@@ -1,4 +1,6 @@
 from datetime import datetime
+import flet as ft
+from functools import lru_cache
 
 def calcular_duracao(inicio, fim):
     """Calcula a duração total entre horário de início e fim no formato HH:MM."""
@@ -50,8 +52,10 @@ def validar_hora(hora_str):
     except:
         return False
 
+@lru_cache(maxsize=500)
 def parse_date(data_str):
     """Tenta converter uma string de data em objeto datetime suportando múltiplos formatos."""
+    if not data_str: return None
     formatos = ["%Y-%m-%d", "%d/%m/%Y", "%d/%m/%y"]
     for fmt in formatos:
         try:
@@ -60,6 +64,7 @@ def parse_date(data_str):
             continue
     return None
 
+@lru_cache(maxsize=500)
 def normalize_date(data_str):
     """Converte qualquer formato de data para o padrão YYYY-MM-DD."""
     dt = parse_date(data_str)
@@ -91,61 +96,58 @@ def formatar_data_completa_semana(data_str):
         dia_semana = dias[dt.weekday()]
         return f"{dt.strftime('%d/%m/%Y')} ({dia_semana})"
 
+# Cache para as configurações de status para evitar recriação constante
+_STATUS_CONFIG = {
+    "Aguardando (Fase 1)": {
+        "label": "Aguardando",
+        "phase": "fase 1",
+        "color": ft.Colors.RED_400,
+        "icon": ft.Icons.SCHEDULE
+    },
+    "Em Reunião (Fase 2)": {
+        "label": "Em Reunião",
+        "phase": "fase 2",
+        "color": ft.Colors.AMBER_400,
+        "icon": ft.Icons.GROUPS
+    },
+    "Criação de Links (Fase 3)": {
+        "label": "Criação de Links",
+        "phase": "fase 3",
+        "color": ft.Colors.TEAL_400,
+        "icon": ft.Icons.LINK
+    },
+    "Agendado (Fase 4)": {
+        "label": "Agendado",
+        "phase": "fase 4",
+        "color": ft.Colors.GREEN_400,
+        "icon": ft.Icons.EVENT_AVAILABLE
+    },
+    "Finalizado (Fase 5)": {
+        "label": "Finalizado",
+        "phase": "fase 5",
+        "color": ft.Colors.PURPLE_400,
+        "icon": ft.Icons.CHECK_CIRCLE
+    },
+    "Cancelado": {
+        "label": "Cancelado",
+        "phase": "cancelado",
+        "color": ft.Colors.BROWN,
+        "icon": ft.Icons.CANCEL
+    }
+}
+
+_LEGACY_MAP = {
+    "Em andamento": "Aguardando (Fase 1)",
+    "Agendado (Fase 1)": "Aguardando (Fase 1)",
+    "Agendado": "Em Reunião (Fase 2)",
+    "Agendado e Criado": "Criação de Links (Fase 3)",
+    "Finalizado": "Finalizado (Fase 5)"
+}
+
 def get_status_info(status):
     """Retorna as informações de cores e fases para cada status."""
-    import flet as ft
-    
-    # Nova Configuração seguindo a solicitação do usuário
-    config = {
-        "Aguardando (Fase 1)": {
-            "label": "Aguardando",
-            "phase": "fase 1",
-            "color": ft.Colors.RED_400,
-            "icon": ft.Icons.SCHEDULE
-        },
-        "Em Reunião (Fase 2)": {
-            "label": "Em Reunião",
-            "phase": "fase 2",
-            "color": ft.Colors.AMBER_400,
-            "icon": ft.Icons.GROUPS
-        },
-        "Criação de Links (Fase 3)": {
-            "label": "Criação de Links",
-            "phase": "fase 3",
-            "color": ft.Colors.TEAL_400,
-            "icon": ft.Icons.LINK
-        },
-        "Agendado (Fase 4)": {
-            "label": "Agendado",
-            "phase": "fase 4",
-            "color": ft.Colors.GREEN_400,
-            "icon": ft.Icons.EVENT_AVAILABLE
-        },
-        "Finalizado (Fase 5)": {
-            "label": "Finalizado",
-            "phase": "fase 5",
-            "color": ft.Colors.PURPLE_400,
-            "icon": ft.Icons.CHECK_CIRCLE
-        },
-        "Cancelado": {
-            "label": "Cancelado",
-            "phase": "cancelado",
-            "color": ft.Colors.BROWN,
-            "icon": ft.Icons.CANCEL
-        }
-    }
-    
-    # Mapeamento de compatibilidade para nomes antigos
-    legacy_map = {
-        "Em andamento": "Aguardando (Fase 1)",
-        "Agendado (Fase 1)": "Aguardando (Fase 1)",
-        "Agendado": "Em Reunião (Fase 2)",
-        "Agendado e Criado": "Criação de Links (Fase 3)",
-        "Finalizado": "Finalizado (Fase 5)"
-    }
-    
-    normalized_status = legacy_map.get(status, status)
-    return config.get(normalized_status, {
+    normalized_status = _LEGACY_MAP.get(status, status)
+    return _STATUS_CONFIG.get(normalized_status, {
         "label": status,
         "phase": "",
         "color": ft.Colors.WHITE24,

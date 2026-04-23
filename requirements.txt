@@ -1,2 +1,4 @@
 flet
 openpyxl
+python-docx
+Pillow

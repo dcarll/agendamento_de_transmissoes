@@ -1,4 +1,6 @@
 import flet as ft
+import os
+import asyncio
 from controllers.transmissao_controller import TransmissaoController
 from views.dashboard_view import DashboardView
 from views.calendario_view import CalendarioView
@@ -9,7 +11,6 @@ from views.relatorio_view import RelatorioView
 class TransmissionApp:
     def __init__(self, page: ft.Page):
         self.page = page
-        # Inicializa o controller com callback para notificar outros usuários/instâncias
         self.controller = TransmissaoController(on_change=self.notificar_mudanca)
         
         self.setup_page()
@@ -19,7 +20,6 @@ class TransmissionApp:
         self.navegar(0)
 
     def setup_page(self):
-        
         self.page.title = "Sistema de Transmissões DTI/LAB"
         self.page.theme_mode = ft.ThemeMode.DARK
         self.page.padding = 0
@@ -29,10 +29,10 @@ class TransmissionApp:
         self.page.window.min_height = 700
         self.page.window.icon = "transmissoes.ico"
         self.page.icon = "transmissoes.ico"
+        self.page.window.maximized = True
         self.page.theme = ft.Theme(color_scheme_seed=ft.Colors.BLUE_700)
 
     def init_components(self):
-        # Sidebar (Navigation Rail)
         self.rail = ft.NavigationRail(
             selected_index=0,
             label_type=ft.NavigationRailLabelType.ALL,
@@ -45,108 +45,93 @@ class TransmissionApp:
             ),
             group_alignment=-0.9,
             destinations=[
-                ft.NavigationRailDestination(
-                    icon=ft.Icons.DASHBOARD_OUTLINED,
-                    selected_icon=ft.Icons.DASHBOARD,
-                    label="Início",
-                ),
-                ft.NavigationRailDestination(
-                    icon=ft.Icons.CALENDAR_MONTH_OUTLINED,
-                    selected_icon=ft.Icons.CALENDAR_MONTH,
-                    label="Calendário",
-                ),
-                ft.NavigationRailDestination(
-                    icon=ft.Icons.HISTORY_OUTLINED,
-                    selected_icon=ft.Icons.HISTORY,
-                    label="Histórico",
-                ),
-                ft.NavigationRailDestination(
-                    icon=ft.Icons.ADD_CIRCLE_OUTLINE,
-                    selected_icon=ft.Icons.ADD_CIRCLE,
-                    label="Novo",
-                ),
-                ft.NavigationRailDestination(
-                    icon=ft.Icons.ASSESSMENT_OUTLINED,
-                    selected_icon=ft.Icons.ASSESSMENT,
-                    label="Relatório",
-                ),
+                ft.NavigationRailDestination(icon=ft.Icons.DASHBOARD_OUTLINED, selected_icon=ft.Icons.DASHBOARD, label="Início"),
+                ft.NavigationRailDestination(icon=ft.Icons.CALENDAR_MONTH_OUTLINED, selected_icon=ft.Icons.CALENDAR_MONTH, label="Calendário"),
+                ft.NavigationRailDestination(icon=ft.Icons.HISTORY_OUTLINED, selected_icon=ft.Icons.HISTORY, label="Histórico"),
+                ft.NavigationRailDestination(icon=ft.Icons.ADD_CIRCLE_OUTLINE, selected_icon=ft.Icons.ADD_CIRCLE, label="Novo"),
+                ft.NavigationRailDestination(icon=ft.Icons.ASSESSMENT_OUTLINED, selected_icon=ft.Icons.ASSESSMENT, label="Relatório"),
             ],
             on_change=lambda e: self.navegar(e.control.selected_index)
         )
 
-        # Content Area
         self.content_area = ft.Container(
             expand=True,
             padding=30,
-            animate=ft.Animation(500, ft.AnimationCurve.DECELERATE)
+            animate=ft.Animation(300, ft.AnimationCurve.DECELERATE)
         )
 
         self.layout = ft.Row(
-            [
-                self.rail,
-                ft.VerticalDivider(width=1, color="white10"),
-                self.content_area,
-            ],
-            expand=True,
-            spacing=0,
+            [self.rail, ft.VerticalDivider(width=1, color="white10"), self.content_area],
+            expand=True, spacing=0,
         )
+
+    def _criar_view(self, index):
+        """Cria a view para o índice dado. Usa dados já em memória."""
+        if index == 0:
+            return DashboardView(self.controller, on_edit=self.abrir_edicao)
+        elif index == 1:
+            return CalendarioView(self.controller, on_edit=self.abrir_edicao)
+        elif index == 2:
+            return HistoricoView(self.controller, on_edit=self.abrir_edicao)
+        elif index == 3:
+            return FormularioView(self.controller, on_back=lambda: self.navegar(0))
+        elif index == 4:
+            return RelatorioView(self.controller, on_back=lambda: self.navegar(0))
 
     def navegar(self, index):
         self.rail.selected_index = index
-        # Força o recarregamento dos dados antes de renderizar a view
-        self.controller.transmissoes = self.controller.carregar()
         
-        if index == 0:
-            self.content_area.content = DashboardView(self.controller, on_edit=self.abrir_edicao)
-        elif index == 1:
-            self.content_area.content = CalendarioView(self.controller, on_edit=self.abrir_edicao)
-        elif index == 2:
-            self.content_area.content = HistoricoView(self.controller, on_edit=self.abrir_edicao)
-        elif index == 3:
-            self.content_area.content = FormularioView(self.controller, on_back=lambda: self.navegar(0))
-        elif index == 4:
-            self.content_area.content = RelatorioView(self.controller, on_back=lambda: self.navegar(0))
-            
+        # 1. Mostra um spinner de carregamento imediatamente
+        # Isso libera a thread principal para o relógio continuar rodando
+        self.content_area.content = ft.Container(
+            content=ft.Column([
+                ft.ProgressRing(width=40, height=40, stroke_width=3, color=ft.Colors.BLUE_400),
+                ft.Text("Carregando...", size=14, color=ft.Colors.WHITE38),
+            ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, alignment=ft.MainAxisAlignment.CENTER),
+            expand=True,
+            alignment=ft.Alignment(0, 0)
+        )
         self.page.update()
 
+        # 2. Constrói a view em background
+        async def build_view():
+            try:
+                # O Flet permite criar widgets em threads separadas (são apenas objetos Python)
+                new_view = await asyncio.to_thread(self._criar_view, index)
+                self.content_area.content = new_view
+                self.page.update()
+            except Exception as e:
+                print(f"Erro ao construir view: {e}")
+
+        self.page.run_task(build_view)
+
     def setup_sync(self):
-        # Subscreve para mensagens em tempo real (PubSub entre sessões no mesmo servidor)
         self.page.pubsub.subscribe(self.on_broadcast)
-        # Inicia o monitoramento periódico para instâncias em computadores diferentes
         self.page.run_task(self.auto_refresh_task)
 
     async def auto_refresh_task(self):
+        """Verifica mudanças no arquivo JSON a cada 5s em background (não bloqueia UI)."""
         import asyncio
-        import json
-        last_data_hash = ""
+        last_mtime = 0
         while True:
-            await asyncio.sleep(2.0) # Verifica a cada 2 segundos
+            await asyncio.sleep(5.0)
             try:
-                if self.rail.selected_index not in (3, 4) and not isinstance(self.content_area.content, FormularioView):
-                    nuevas_transmissoes = self.controller.carregar()
-                    
-                    # Gera um hash simples ou string comparável do estado atual
-                    # (Apenas para checar se algo mudou antes de rebuildar toda a UI)
-                    current_data_hash = str(len(nuevas_transmissoes)) + str(max([t.id for t in nuevas_transmissoes] if nuevas_transmissoes else [0]))
-                    
-                    # Adicionalmente, podemos checar se algum status mudou
-                    if nuevas_transmissoes:
-                        status_summary = "".join([t.status[:1] for t in nuevas_transmissoes])
-                        current_data_hash += status_summary
-
-                    if current_data_hash != last_data_hash:
-                        last_data_hash = current_data_hash
-                        self.controller.transmissoes = nuevas_transmissoes
-                        
-                        if hasattr(self.content_area.content, "atualizar"):
-                            self.content_area.content.atualizar()
-                        else:
-                            self.navegar(self.rail.selected_index)
+                filepath = self.controller.FILEPATH
+                current_mtime = await asyncio.to_thread(os.path.getmtime, filepath)
+                if current_mtime != last_mtime and last_mtime != 0:
+                    last_mtime = current_mtime
+                    # Outro usuário salvou - relê do disco em background
+                    dados = await asyncio.to_thread(self.controller.db._carregar_arquivo)
+                    self.controller.db._dados = dados
+                    self.controller.transmissoes = self.controller.carregar()
+                    if hasattr(self.content_area.content, "atualizar"):
+                        self.content_area.content.atualizar()
+                else:
+                    last_mtime = current_mtime
             except:
                 pass
 
     def notificar_mudanca(self):
-        """Notifica todas as sessões conectadas ao mesmo servidor Flet."""
         try:
             self.page.pubsub.send_all("update_required")
         except:
@@ -158,80 +143,20 @@ class TransmissionApp:
 
     def recarregar_interface(self):
         try:
-            # Se o usuário está na tela de "Novo" (índice 3) ou Editando (que usa FormularioView), 
-            # não recarregamos para evitar que ele perca o que está digitando.
             if self.rail.selected_index in (3, 4) or isinstance(self.content_area.content, FormularioView):
-                # Apenas atualizamos os dados no fundo, mas não resetamos a view
-                self.controller.transmissoes = self.controller.carregar()
                 return
-            
-            # Recarrega a view atual com os novos dados
-            self.navegar(self.rail.selected_index)
+            if hasattr(self.content_area.content, "atualizar"):
+                self.content_area.content.atualizar()
+                self.page.update()
+            else:
+                self.navegar(self.rail.selected_index)
         except Exception as e:
             print(f"Erro ao recarregar interface: {e}")
 
     def abrir_edicao(self, transmissao):
-        # Captura o estado atual da view para restauração posterior
-        view = self.content_area.content
-        state = {
-            "index": self.rail.selected_index,
-            "pagina": getattr(view, "pagina_atual", 0),
-            "busca": getattr(view.txt_busca, "value", "") if hasattr(view, "txt_busca") else "",
-        }
-        
-        # Estado específico do Calendário
-        if isinstance(view, CalendarioView):
-            state.update({
-                "status": view.dd_status.value,
-                "periodo": view.dd_periodo.value,
-                "tipo": view.dd_tipo.value,
-                "modalidade": view.dd_modalidade.value,
-                "ordenar": view.dd_ordenar.value,
-                "view_mode": view.view_mode,
-                "data_inicio": view.data_inicio_selecionada,
-                "data_fim": view.data_fim_selecionada,
-            })
-
         self.content_area.content = FormularioView(
-            self.controller, 
-            on_back=lambda: self.voltar_da_edicao(state), 
+            self.controller,
+            on_back=lambda: self.navegar(0),
             transmissao_edit=transmissao
         )
-        self.page.update()
-
-    def voltar_da_edicao(self, state):
-        # Retorna para a aba anterior
-        self.navegar(state["index"])
-        view = self.content_area.content
-        
-        # Restaura busca e página
-        if hasattr(view, "txt_busca"):
-            view.txt_busca.value = state["busca"]
-        if hasattr(view, "pagina_atual"):
-            view.pagina_atual = state["pagina"]
-            
-        # Restaura filtros específicos do Calendário
-        if isinstance(view, CalendarioView):
-            view.dd_status.value = state.get("status", "Todos")
-            view.dd_periodo.value = state.get("periodo", "Todos")
-            view.dd_tipo.value = state.get("tipo", "Todos")
-            view.dd_modalidade.value = state.get("modalidade", "Todos")
-            view.dd_ordenar.value = state.get("ordenar", "data_evento")
-            view.view_mode = state.get("view_mode", "list")
-            view.data_inicio_selecionada = state.get("data_inicio")
-            view.data_fim_selecionada = state.get("data_fim")
-            
-            # Atualiza textos de data se necessário
-            if view.data_inicio_selecionada:
-                view.txt_inicio.value = view.data_inicio_selecionada.strftime('%d/%m/%Y')
-            if view.data_fim_selecionada:
-                view.txt_fim.value = view.data_fim_selecionada.strftime('%d/%m/%Y')
-            
-            if view.dd_periodo.value == "Personalizado":
-                view.row_personalizado.visible = True
-
-        # Re-inicializa a UI com os dados restaurados
-        if hasattr(view, "init_ui"):
-            view.init_ui()
-            
         self.page.update()
