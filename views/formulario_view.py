@@ -1,7 +1,7 @@
 import flet as ft
 from models.transmissao_model import Transmissao
 from controllers.transmissao_controller import TransmissaoController
-from utils.helpers import validar_hora, normalize_date
+from utils.helpers import validar_hora, normalize_date, mascarar_hora
 from datetime import datetime
 
 class FormularioView(ft.Column):
@@ -60,7 +60,7 @@ class FormularioView(ft.Column):
             label="Início (HH:MM)*", 
             value=self.t_edit.horario_inicio if self.edit_mode else "09:00", 
             hint_text="00:00",
-            on_change=self.mascarar_hora,
+            on_change=mascarar_hora,
             border=ft.InputBorder.NONE,
             filled=False,
             width=150,
@@ -70,10 +70,32 @@ class FormularioView(ft.Column):
             label="Fim (HH:MM)*", 
             value=self.t_edit.horario_fim if self.edit_mode else "11:00", 
             hint_text="00:00",
-            on_change=self.mascarar_hora,
+            on_change=mascarar_hora,
             border=ft.InputBorder.NONE,
             filled=False,
             width=150,
+            text_size=16
+        )
+
+        # Campos de Horário Real
+        self.txt_inicio_real = ft.TextField(
+            label="Início Real (HH:MM)", 
+            value=self.t_edit.horario_inicio_real if self.edit_mode else "", 
+            hint_text="00:00",
+            on_change=mascarar_hora,
+            border=ft.InputBorder.NONE,
+            filled=False,
+            width=180,
+            text_size=16
+        )
+        self.txt_fim_real = ft.TextField(
+            label="Término Real (HH:MM)", 
+            value=self.t_edit.horario_fim_real if self.edit_mode else "", 
+            hint_text="00:00",
+            on_change=mascarar_hora,
+            border=ft.InputBorder.NONE,
+            filled=False,
+            width=180,
             text_size=16
         )
         
@@ -186,6 +208,7 @@ class FormularioView(ft.Column):
             ft.Column([
                 ft.Row([self.wrap_field_gradient(self.txt_evento, True), self.wrap_field_gradient(self.txt_responsavel, True)]),
                 ft.Row([self.wrap_field_gradient(self.txt_data, True), self.wrap_field_gradient(self.txt_inicio), self.wrap_field_gradient(self.txt_fim)]),
+                
                 ft.Row([
                     self.wrap_field_gradient(self.dd_tipo, True),
                     self.wrap_field_gradient(self.dd_modalidade, True),
@@ -209,6 +232,15 @@ class FormularioView(ft.Column):
                 self.col_links_adicionais,
                 ft.Row([self.wrap_field_gradient(self.txt_publico, True), self.wrap_field_gradient(self.txt_operador, True)]),
                 self.wrap_field_gradient(self.txt_obs),
+                # Seção de Horários Reais com destaque sutil
+                ft.Row([
+                    ft.Icon(ft.Icons.PLAY_CIRCLE_FILL, color=ft.Colors.GREEN_400, size=20),
+                    ft.Text("Execução Real (Preencher após a transmissão)", size=12, color=ft.Colors.GREEN_400, weight=ft.FontWeight.W_500)
+                ], spacing=10, margin=ft.margin.only(top=10)),
+                ft.Row([
+                    self.wrap_field_gradient(self.txt_inicio_real, True), 
+                    self.wrap_field_gradient(self.txt_fim_real, True)
+                ]),
                 ft.Divider(height=10, color=ft.Colors.TRANSPARENT),
                 ft.Row([
                     ft.ElevatedButton(
@@ -303,20 +335,6 @@ class FormularioView(ft.Column):
         dp.open = True
         self.page.update()
 
-    def mascarar_hora(self, e):
-        # Pega apenas os números digitados
-        nums = "".join(filter(str.isdigit, e.control.value))[:4]
-        
-        # Formata como HH:MM apenas se houver mais de 2 números
-        if len(nums) > 2:
-            res = f"{nums[:2]}:{nums[2:]}"
-        else:
-            res = nums
-            
-        # Só atualiza a tela se o valor mudar (evita loop infinito)
-        if e.control.value != res:
-            e.control.value = res
-            e.control.update()
 
     def to_minutes(self, hora_str):
         try:
@@ -368,6 +386,8 @@ class FormularioView(ft.Column):
             "data": data_salvar,
             "horario_inicio": self.txt_inicio.value,
             "horario_fim": self.txt_fim.value,
+            "horario_inicio_real": self.txt_inicio_real.value,
+            "horario_fim_real": self.txt_fim_real.value,
             "tipo_transmissao": tipo,
             "modalidade": self.dd_modalidade.value,
             "status": self.dd_status.value,

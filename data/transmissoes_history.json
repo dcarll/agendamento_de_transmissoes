@@ -1,5 +1,305 @@
 [
   {
+    "data_hora": "24/04/2026 14:28:12",
+    "usuario": "005987",
+    "acao": "INSERÇÃO",
+    "detalhes": "Evento: Alfabetização eleitura de mundo na abordagem educacional de Paulo Freire | Data: 13/05/2026 | Início: 19:00 | Responsável: Profª Drª Emilia Maria Bezerra Sanches | Local: "
+  },
+  {
+    "data_hora": "24/04/2026 13:34:28",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Conferência parte 2 - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 13:31:07",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: 00851ca3-f6dc-49ee-a9a6-ccf7fd5a8747 | Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Conclusão: Orientções Práticas | Responsável: Prof. Gilvan Leite de Araújo"
+  },
+  {
+    "data_hora": "24/04/2026 13:30:54",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: 4f5f5c76-cfcd-4702-843a-8dae69f85eb3 | Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Mesa Redonda | Responsável: Prof. Gilvan Leite de Araújo"
+  },
+  {
+    "data_hora": "24/04/2026 13:26:13",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Conferência parte 2 - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 13:19:01",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Encerramento - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 13:18:58",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Minicursos e Oficinas - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 13:18:55",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Comunicações Científicas - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 13:18:53",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Minicursos e Oficinas - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 13:10:30",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Encerramento - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 13:10:11",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Minicursos e Oficinas - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 13:09:59",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Comunicações Científicas - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 13:09:48",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Minicursos e Oficinas - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 13:04:25",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: a9629c58-3f6d-41ba-94b2-9a0e893a9d30 | Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Diálogo/Interação com participantes | Responsável: Prof. Gilvan Leite de Araújo"
+  },
+  {
+    "data_hora": "24/04/2026 12:42:13",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: Escrever em Perspectiva Socio-interacional - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 11:17:22",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: 66961839-b043-4a61-8671-dc80d8e8bb8b | Evento: Vomne | Responsável: Jose"
+  },
+  {
+    "data_hora": "24/04/2026 11:04:27",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Minicursos e Oficinas - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 11:03:59",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Comunicações Científicas - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 11:03:29",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Encerramento - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 10:58:07",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Minicursos e Oficinas - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 10:53:19",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Encerramento - Tipo:  -> Zoom"
+  },
+  {
+    "data_hora": "24/04/2026 10:52:53",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Encerramento - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 10:52:26",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Encerramento - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 10:47:27",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Comunicações Científicas - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 10:44:50",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: 79553683-a810-4d45-80b4-0899e906ab18 | Evento: VI Simpósio Paulista de Estudos Bíblicos - SIMPEB - Comunicações Científicas | Responsável: Prof. Gilvan Leite de Araújo"
+  },
+  {
+    "data_hora": "24/04/2026 09:03:54",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: Apresentação do Coral - Derdic - Status: Agendado (Fase 4) -> Finalizado (Fase 5)"
+  },
+  {
+    "data_hora": "24/04/2026 08:59:41",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: Apresentação do Coral - Derdic - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 08:54:17",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: 2675ed76-f03c-4e18-9260-ecc4e6734a2f | Evento: TESTE DE TARTARUGAS ENRRUGADAS DA TAILANDIA | Responsável: DIEGO"
+  },
+  {
+    "data_hora": "24/04/2026 08:54:13",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: 98a7283f-e036-4b21-9010-9207b3b7241c | Evento: Oitava janta | Responsável: Humbento"
+  },
+  {
+    "data_hora": "24/04/2026 08:54:08",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: e8e0bf64-58b0-4463-8356-6eb1bb523ba5 | Evento: Movimento retilineo | Responsável: Humbento"
+  },
+  {
+    "data_hora": "24/04/2026 08:54:04",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: ce5cf709-1068-45ef-8ca2-dfddcaad3321 | Evento: Sentembo xome | Responsável: Josia"
+  },
+  {
+    "data_hora": "24/04/2026 08:54:00",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: e1d5e03d-0f6c-4daf-bd26-356e6969a61d | Evento: Outube n chove | Responsável: Santos"
+  },
+  {
+    "data_hora": "24/04/2026 08:22:06",
+    "usuario": "305369",
+    "acao": "INSERÇÃO",
+    "detalhes": "Evento: Vomne | Data: 24/04/2026 | Início: 09:00 | Responsável: Jose | Local: Auditório Central"
+  },
+  {
+    "data_hora": "24/04/2026 08:21:47",
+    "usuario": "305369",
+    "acao": "INSERÇÃO",
+    "detalhes": "Evento: Outube n chove | Data: 08/10/2026 | Início: 09:00 | Responsável: Santos | Local: Auditório Central"
+  },
+  {
+    "data_hora": "24/04/2026 08:20:32",
+    "usuario": "305369",
+    "acao": "INSERÇÃO",
+    "detalhes": "Evento: Sentembo xome | Data: 10/09/2026 | Início: 09:00 | Responsável: Josia | Local: Auditório Central"
+  },
+  {
+    "data_hora": "24/04/2026 08:19:35",
+    "usuario": "305369",
+    "acao": "INSERÇÃO",
+    "detalhes": "Evento: Movimento retilineo | Data: 12/08/2026 | Início: 09:00 | Responsável: Humbento | Local: Auditório Central"
+  },
+  {
+    "data_hora": "24/04/2026 08:15:12",
+    "usuario": "305369",
+    "acao": "INSERÇÃO",
+    "detalhes": "Evento: Oitava janta | Data: 01/07/2026 | Início: 09:00 | Responsável: Humbento | Local: Auditório Central"
+  },
+  {
+    "data_hora": "24/04/2026 08:11:00",
+    "usuario": "004823",
+    "acao": "INSERÇÃO",
+    "detalhes": "Evento: TESTE DE TARTARUGAS ENRRUGADAS DA TAILANDIA | Data: 24/06/2026 | Início: 09:00 | Responsável: DIEGO | Local: "
+  },
+  {
+    "data_hora": "24/04/2026 07:28:02",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: LaborVox convida - Detecção precoce de sintomas vocais: uma aproximação multicêntrica - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 07:21:27",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: II  Jornada de Literatura de Autoria Feminina (Ela/Dela) - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 07:07:37",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: 089defb2-9e5f-4f4a-80d3-338e6338ca7f | Evento: t | Responsável: teste"
+  },
+  {
+    "data_hora": "24/04/2026 07:05:09",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: II  Jornada de Literatura de Autoria Feminina (Ela/Dela) - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "23/04/2026 16:06:17",
+    "usuario": "005987",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: t - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "23/04/2026 16:00:54",
+    "usuario": "005987",
+    "acao": "INSERÇÃO",
+    "detalhes": "Evento: t | Data: 23/04/2026 | Início: 09:00 | Responsável: teste | Local: Auditório Central"
+  },
+  {
+    "data_hora": "23/04/2026 15:59:52",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: fedd3106-f844-478d-b644-f8b4390ea556 | Evento: Testeseserser | Responsável: Dfsfdsfg"
+  },
+  {
+    "data_hora": "23/04/2026 15:59:45",
+    "usuario": "305369",
+    "acao": "INSERÇÃO",
+    "detalhes": "Evento: Testeseserser | Data: 23/04/2026 | Início: 16:00 | Responsável: Dfsfdsfg | Local: Auditório Central"
+  },
+  {
+    "data_hora": "23/04/2026 15:57:45",
+    "usuario": "305369",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: 229bc253-e0c6-4f8f-a554-72f2a75b19b8 | Evento: TESTESSS | Responsável: jOCIAS"
+  },
+  {
+    "data_hora": "23/04/2026 15:53:46",
+    "usuario": "005987",
+    "acao": "EXCLUSÃO",
+    "detalhes": "ID: 172b515f-7e5a-48c2-bd10-8e80b7fe1588 | Evento: teste 01 | Responsável: teste"
+  },
+  {
+    "data_hora": "23/04/2026 15:21:59",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: II  Jornada de Literatura de Autoria Feminina (Ela/Dela) - Fim: 20:00 -> 16:30 | Tipo: YouTube -> StreamYard+Youtube | Status: Aguardando (Fase 1) -> Finalizado (Fase 5) | Público: 0 -> 33"
+  },
+  {
+    "data_hora": "23/04/2026 15:16:11",
+    "usuario": "004823",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: Escrever em Perspectiva Socio-interacional - Salvo sem mudanças perceptíveis."
+  },
+  {
     "data_hora": "23/04/2026 08:50:31",
     "usuario": "305369",
     "acao": "ALTERAÇÃO",

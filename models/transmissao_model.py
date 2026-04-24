@@ -12,6 +12,8 @@ class Transmissao:
     tipo_transmissao: str # StreamYard, OBS, YouTube, Zoom
     modalidade: str # Presencial, Online, Híbrido
     local: str
+    horario_inicio_real: str = ""
+    horario_fim_real: str = ""
     link_stream: str = ""
     link_youtube: str = ""
     status: str = "Agendado" # Agendado, Em andamento, Finalizado

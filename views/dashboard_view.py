@@ -1,22 +1,53 @@
 import flet as ft
 from controllers.transmissao_controller import TransmissaoController
 from datetime import datetime
-from utils.helpers import normalize_date, formatar_data_semana, formatar_data_completa_semana, parse_date, get_status_info
+from utils.helpers import normalize_date, formatar_data_semana, formatar_data_completa_semana, parse_date, get_status_info, format_date_br
 from utils.dialog_helper import mostrar_detalhes_transmissao, abrir_menu_contexto
 import asyncio
 
 class DashboardView(ft.Column):
-    def __init__(self, controller: TransmissaoController, on_edit):
+    def __init__(self, controller: TransmissaoController, on_edit, on_navigate):
         super().__init__(expand=True, spacing=30, scroll=ft.ScrollMode.AUTO)
         self.controller = controller
         self.on_edit = on_edit
+        self.on_navigate = on_navigate
         self.filtro_especial = None
         self.pagina_atual = 0
         self.itens_por_pagina = 12
         
-        self.relogio = ft.Text("", size=30, weight=ft.FontWeight.BOLD, color=ft.Colors.CYAN_200)
-        self.data_extenso = ft.Text("", size=12, color=ft.Colors.WHITE70)
-        self.txt_busca = ft.TextField(hint_text="Pesquisar...", prefix_icon=ft.Icons.SEARCH, on_change=lambda _: self.reset_pagination(), expand=True, height=45, text_size=13, bgcolor=ft.Colors.WHITE10, border_radius=10, border=ft.InputBorder.NONE)
+        self.relogio = ft.Text("", size=28, weight=ft.FontWeight.BOLD, color=ft.Colors.CYAN_200)
+        self.data_extenso = ft.Text("", size=11, color=ft.Colors.WHITE38)
+        self.txt_busca = ft.TextField(
+            hint_text="Pesquisar...", 
+            prefix_icon=ft.Icons.SEARCH, 
+            on_change=lambda _: self.reset_pagination(), 
+            height=40, 
+            text_size=13, 
+            bgcolor=ft.Colors.TRANSPARENT, 
+            border=ft.InputBorder.NONE,
+            content_padding=ft.padding.symmetric(vertical=0, horizontal=0),
+            cursor_color=ft.Colors.WHITE,
+            selection_color=ft.Colors.with_opacity(0.3, ft.Colors.WHITE),
+        )
+        
+        self.search_bar = ft.Container(
+            content=self.txt_busca,
+            width=280,
+            height=40,
+            border_radius=12,
+            border=ft.border.all(1, ft.Colors.with_opacity(0.15, ft.Colors.WHITE)),
+            gradient=ft.LinearGradient(
+                begin=ft.Alignment(-1, -1),
+                end=ft.Alignment(1, 1),
+                colors=[
+                    ft.Colors.with_opacity(0.12, ft.Colors.WHITE),
+                    ft.Colors.with_opacity(0.04, ft.Colors.WHITE),
+                ],
+            ),
+            padding=ft.padding.symmetric(horizontal=12),
+            animate=ft.Animation(300, ft.AnimationCurve.DECELERATE),
+            on_hover=self.on_search_hover
+        )
         
         self.row_status = ft.Row(spacing=30, scroll=ft.ScrollMode.AUTO, alignment=ft.MainAxisAlignment.CENTER)
         self.lista_eventos = ft.Column(spacing=10, expand=True)
@@ -34,9 +65,85 @@ class DashboardView(ft.Column):
             await asyncio.sleep(1)
 
     def init_ui(self):
-        header = ft.Row([ft.Column([ft.Text("TRANSMISSÕES DTI/LAB!", size=32, weight=ft.FontWeight.BOLD), ft.Text("Sistema de Transmissões DTI/LABORATÓRIOS", size=14, color=ft.Colors.WHITE38)], spacing=0), ft.Container(expand=True), ft.Container(content=ft.Column([self.relogio, self.data_extenso], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=0), padding=ft.padding.symmetric(horizontal=30, vertical=10), bgcolor=ft.Colors.with_opacity(0.1, ft.Colors.CYAN_900), border_radius=15, border=ft.border.all(1, ft.Colors.with_opacity(0.2, ft.Colors.CYAN_200))), ft.Container(expand=True), ft.Row([self.txt_busca, ft.IconButton(ft.Icons.REFRESH, on_click=lambda _: self.atualizar_dados())], spacing=10)], vertical_alignment=ft.CrossAxisAlignment.CENTER)
+        header = ft.Row([
+            # Seção Esquerda: Título
+            ft.Column([
+                ft.Text("TRANSMISSÕES TI - LAB | FUNDASP", size=30, weight=ft.FontWeight.BOLD), 
+                ft.Text("Sistema de agendamento e calendário de transmissões", size=13, color=ft.Colors.WHITE38)
+            ], spacing=0, expand=True),
+            
+            # Seção Central: Barra de Pesquisa
+            ft.Container(
+                content=self.search_bar,
+                expand=True,
+                alignment=ft.Alignment(0, 0)
+            ),
+            
+            # Seção Direita: Relógio
+            ft.Container(
+                content=ft.Container(
+                    content=ft.Column([self.relogio, self.data_extenso], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=0), 
+                    padding=ft.padding.symmetric(horizontal=25, vertical=8), 
+                    bgcolor=ft.Colors.with_opacity(0.1, ft.Colors.CYAN_900), 
+                    border_radius=15, 
+                    border=ft.border.all(1, ft.Colors.with_opacity(0.2, ft.Colors.CYAN_200))
+                ),
+                expand=True,
+                alignment=ft.Alignment(1, 0)
+            )
+        ], vertical_alignment=ft.CrossAxisAlignment.CENTER)
         status_section = ft.Container(content=self.row_status, padding=ft.padding.symmetric(vertical=10), alignment=ft.Alignment(0, 0))
-        main_layout = ft.Row([ft.Column([ft.Row([ft.Icon(ft.Icons.EVENT_NOTE, color=ft.Colors.ORANGE_400), ft.Text("Próximos Eventos", size=22, weight=ft.FontWeight.BOLD)]), self.lista_eventos, self.paginacao_row], expand=7, spacing=20), ft.Column([ft.Row([ft.Icon(ft.Icons.BAR_CHART, color=ft.Colors.BLUE_400), ft.Text("Resumo Público", size=20, weight=ft.FontWeight.BOLD)]), ft.Container(content=self.resumo_publico, padding=20, bgcolor=ft.Colors.WHITE10, border_radius=15), ft.Row([ft.Container(content=self.resumo_mensal, padding=15, bgcolor=ft.Colors.WHITE10, border_radius=15, expand=1), ft.Container(content=self.resumo_semestral, padding=15, bgcolor=ft.Colors.WHITE10, border_radius=15, expand=1)], spacing=15), ft.Row([ft.Icon(ft.Icons.CALENDAR_MONTH, color=ft.Colors.ORANGE_400), ft.Text("Resumo Anual", size=18, weight=ft.FontWeight.BOLD)]), ft.Container(content=self.resumo_anual, padding=20, bgcolor=ft.Colors.WHITE10, border_radius=15)], expand=3, spacing=15)], alignment=ft.MainAxisAlignment.START, vertical_alignment=ft.CrossAxisAlignment.START, spacing=30)
+        main_layout = ft.Row([
+            ft.Column([
+                ft.Row([ft.Icon(ft.Icons.EVENT_NOTE, color=ft.Colors.ORANGE_400), ft.Text("Próximos Eventos", size=22, weight=ft.FontWeight.BOLD)]), 
+                self.lista_eventos, 
+                self.paginacao_row
+            ], expand=7, spacing=20), 
+            ft.Column([
+                ft.Row([ft.Icon(ft.Icons.BAR_CHART, color=ft.Colors.BLUE_400), ft.Text("Resumo Público", size=20, weight=ft.FontWeight.BOLD)]), 
+                ft.Container(
+                    content=self.resumo_publico, 
+                    padding=20, 
+                    bgcolor=ft.Colors.WHITE10, 
+                    border_radius=15,
+                    on_click=lambda _: self.on_navigate(4),
+                    on_hover=self.on_summary_hover,
+                    tooltip="Ver detalhes no Relatório"
+                ), 
+                ft.Row([
+                    ft.Container(
+                        content=self.resumo_mensal, 
+                        padding=15, 
+                        bgcolor=ft.Colors.WHITE10, 
+                        border_radius=15, 
+                        expand=1,
+                        on_click=lambda _: self.on_navigate(4),
+                        on_hover=self.on_summary_hover,
+                        tooltip="Ver detalhes no Relatório"
+                    ), 
+                    ft.Container(
+                        content=self.resumo_semestral, 
+                        padding=15, 
+                        bgcolor=ft.Colors.WHITE10, 
+                        border_radius=15, 
+                        expand=1,
+                        on_click=lambda _: self.on_navigate(4),
+                        on_hover=self.on_summary_hover,
+                        tooltip="Ver detalhes no Relatório"
+                    )
+                ], spacing=15), 
+                ft.Row([ft.Icon(ft.Icons.CALENDAR_MONTH, color=ft.Colors.ORANGE_400), ft.Text("Resumo Anual", size=18, weight=ft.FontWeight.BOLD)]), 
+                ft.Container(
+                    content=self.resumo_anual, 
+                    padding=20, 
+                    bgcolor=ft.Colors.WHITE10, 
+                    border_radius=15,
+                    on_click=lambda _: self.on_navigate(4),
+                    on_hover=self.on_summary_hover,
+                    tooltip="Ver detalhes no Relatório"
+                )
+            ], expand=3, spacing=15)
+        ], alignment=ft.MainAxisAlignment.START, vertical_alignment=ft.CrossAxisAlignment.START, spacing=30)
         self.controls = [header, status_section, main_layout]; self.atualizar_dados()
 
     def build_stat_mini(self, title, phase_key, value, icon, color):
@@ -60,7 +167,14 @@ class DashboardView(ft.Column):
             elif self.filtro_especial == "mes": agora = datetime.now(); eventos = [t for t in self.controller.transmissoes if parse_date(t.data).month == agora.month and parse_date(t.data).year == agora.year]
             else: eventos = self.controller.transmissoes
         else: eventos = [t for t in self.controller.transmissoes if normalize_date(t.data) >= hoje_str]
-        if termo: eventos = [t for t in eventos if termo in t.evento.lower() or termo in t.responsavel.lower()]
+        if termo: 
+            # Filtro por termo de busca
+            eventos = [
+                t for t in eventos 
+                if termo in t.evento.lower() 
+                or termo in t.responsavel.lower() 
+                or termo in format_date_br(t.data)
+            ]
         eventos.sort(key=lambda x: (normalize_date(x.data), x.horario_inicio))
         
         tp_total = (len(eventos) + self.itens_por_pagina - 1) // self.itens_por_pagina
@@ -75,19 +189,76 @@ class DashboardView(ft.Column):
 
     def create_event_row(self, t):
         s_info = get_status_info(t.status)
+        data_partes = formatar_data_semana(t.data).split(' - ')
+        data_num = data_partes[0]
+        dia_semana = data_partes[1] if len(data_partes) > 1 else ""
+        
         return ft.GestureDetector(
             content=ft.Container(
                 content=ft.Row([
-                    ft.Container(content=ft.Text(formatar_data_semana(t.data), weight=ft.FontWeight.BOLD, size=12, color=ft.Colors.BLACK), bgcolor=s_info["color"], padding=ft.padding.symmetric(horizontal=10, vertical=5), border_radius=8, width=105, alignment=ft.Alignment(0, 0)),
-                    ft.Column([ft.Text(t.evento, size=16, weight=ft.FontWeight.BOLD), ft.Text(f"{t.horario_inicio} às {t.horario_fim} - {t.responsavel} | {t.local}", size=12, color=ft.Colors.WHITE70)], expand=True, spacing=2),
-                    ft.Container(content=ft.Row([ft.Container(bgcolor=s_info["color"], width=8, height=8, border_radius=4), ft.Text(s_info["label"], size=11, color=s_info["color"], weight=ft.FontWeight.BOLD)], spacing=5), width=140),
-                    ft.Row([ft.IconButton(ft.Icons.INFO_OUTLINE, icon_size=18, icon_color=ft.Colors.CYAN_200, on_click=lambda _: mostrar_detalhes_transmissao(self.page, t, self.controller, self.atualizar_dados)), ft.IconButton(ft.Icons.EDIT_NOTE, icon_size=18, icon_color=ft.Colors.BLUE_200, on_click=lambda _: self.on_edit(t)), ft.IconButton(ft.Icons.DELETE_OUTLINE, icon_size=18, icon_color=ft.Colors.RED_300, on_click=lambda _: self.confirmar_exclusao(t))], spacing=0)
+                    # Data (Versão compacta para Dashboard)
+                    ft.Container(
+                        content=ft.Column([
+                            ft.Text(data_num, weight=ft.FontWeight.BOLD, size=14, color=ft.Colors.BLACK),
+                            ft.Text(dia_semana.upper(), size=8, color=ft.Colors.BLACK54, weight=ft.FontWeight.BOLD),
+                        ], spacing=0, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+                        bgcolor=s_info["color"],
+                        padding=ft.padding.symmetric(horizontal=8, vertical=4),
+                        border_radius=8,
+                        width=85,
+                        alignment=ft.Alignment(0, 0)
+                    ),
+                    # Info principal (Evento, Horário, Tipo, Modalidade)
+                    ft.Column([
+                        ft.Text(t.evento, size=15, weight=ft.FontWeight.BOLD, max_lines=1, overflow=ft.TextOverflow.ELLIPSIS),
+                        ft.Row([
+                            ft.Text(f"{t.horario_inicio} às {t.horario_fim}", size=11, weight=ft.FontWeight.W_500, color=ft.Colors.CYAN_200),
+                            ft.Text(" • ", color=ft.Colors.WHITE24),
+                            ft.Text(t.modalidade or "N/A", size=11, color=ft.Colors.WHITE38),
+                            ft.Text(" • ", color=ft.Colors.WHITE24),
+                            ft.Text(t.tipo_transmissao or "-", size=11, color=ft.Colors.ORANGE_300, weight=ft.FontWeight.W_500),
+                        ], spacing=5),
+                    ], expand=True, spacing=2),
+                    # Responsável e Local
+                    ft.Column([
+                        ft.Row([ft.Icon(ft.Icons.PERSON, size=12, color=ft.Colors.WHITE38), ft.Text(t.responsavel, size=11, color=ft.Colors.WHITE70, overflow=ft.TextOverflow.ELLIPSIS)], spacing=5),
+                        ft.Row([ft.Icon(ft.Icons.LOCATION_ON, size=12, color=ft.Colors.WHITE38), ft.Text(t.local, size=10, color=ft.Colors.WHITE38, overflow=ft.TextOverflow.ELLIPSIS)], spacing=5),
+                    ], spacing=2, width=180),
+                    # Status
+                    ft.Container(
+                        content=ft.Row([
+                            ft.Container(bgcolor=s_info["color"], width=6, height=6, border_radius=3),
+                            ft.Text(s_info["label"], size=10, color=s_info["color"], weight=ft.FontWeight.BOLD)
+                        ], spacing=5),
+                        width=110
+                    ),
+                    # Ações rápidas
+                    ft.Row([
+                        ft.IconButton(ft.Icons.INFO_OUTLINE, icon_size=16, icon_color=ft.Colors.CYAN_200, tooltip="Detalhes", on_click=lambda _: mostrar_detalhes_transmissao(self.page, t, self.controller, self.atualizar_dados)),
+                        ft.IconButton(ft.Icons.EDIT_NOTE, icon_size=18, icon_color=ft.Colors.BLUE_200, tooltip="Editar", on_click=lambda _: self.on_edit(t)),
+                    ], spacing=0)
                 ], spacing=15),
-                padding=12, border_radius=12, bgcolor=ft.Colors.WHITE10, border=ft.border.all(1, ft.Colors.with_opacity(0.05, ft.Colors.WHITE))
+                padding=10, 
+                border_radius=12, 
+                bgcolor=ft.Colors.WHITE10, 
+                border=ft.border.all(1, ft.Colors.with_opacity(0.05, ft.Colors.WHITE)),
+                on_hover=lambda e: self.on_row_hover(e)
             ),
             on_tap=lambda _: mostrar_detalhes_transmissao(self.page, t, self.controller, self.atualizar_dados),
             on_secondary_tap=lambda e: abrir_menu_contexto(self.page, t, self.controller, self.on_edit, self.confirmar_exclusao, self.atualizar_dados),
         )
+
+    def on_search_hover(self, e):
+        e.control.border = ft.border.all(1, ft.Colors.with_opacity(0.4, ft.Colors.WHITE)) if e.data == "true" else ft.border.all(1, ft.Colors.with_opacity(0.15, ft.Colors.WHITE))
+        e.control.update()
+
+    def on_row_hover(self, e):
+        e.control.bgcolor = ft.Colors.with_opacity(0.15, ft.Colors.WHITE) if e.data == "true" else ft.Colors.WHITE10
+        e.control.update()
+
+    def on_summary_hover(self, e):
+        e.control.bgcolor = ft.Colors.with_opacity(0.18, ft.Colors.WHITE) if e.data == "true" else ft.Colors.WHITE10
+        e.control.update()
 
     def confirmar_exclusao(self, t):
         dlg = ft.AlertDialog(title=ft.Text("Confirmar Exclusão"), content=ft.Text(f"Deseja excluir '{t.evento}'?"), actions=[ft.TextButton("Cancelar", on_click=lambda _: self.fechar_dlg(dlg)), ft.ElevatedButton("Excluir", bgcolor=ft.Colors.RED_700, on_click=lambda _: self.deletar_e_fechar(t, dlg))])

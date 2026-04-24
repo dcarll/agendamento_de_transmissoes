@@ -1,7 +1,7 @@
 import csv
 from models.transmissao_model import Transmissao
 from services.json_service import JsonService
-from utils.helpers import calcular_duracao, converter_tempo_para_segundos, formatar_segundos_para_tempo, parse_date, normalize_date
+from utils.helpers import calcular_duracao, converter_tempo_para_segundos, formatar_segundos_para_tempo, parse_date, normalize_date, format_date_br
 from datetime import datetime, timedelta
 import os
 
@@ -26,21 +26,50 @@ class TransmissaoController:
         t.tempo_total = calcular_duracao(t.horario_inicio, t.horario_fim)
         self.transmissoes.append(t)
         self.db.salvar_todos([item.to_dict() for item in self.transmissoes])
-        self.db.registrar_historico("INSERÇÃO", f"Evento: {t.evento}")
+        detalhes = f"Evento: {t.evento} | Data: {format_date_br(t.data)} | Início: {t.horario_inicio} | Responsável: {t.responsavel} | Local: {t.local}"
+        self.db.registrar_historico("INSERÇÃO", detalhes)
         self.salvar()
 
     def atualizar(self, t_new: Transmissao):
         t_new.tempo_total = calcular_duracao(t_new.horario_inicio, t_new.horario_fim)
+        old_t = next((t for t in self.transmissoes if t.id == t_new.id), None)
+        
+        mudancas = []
+        if old_t:
+            campos = [
+                ("Evento", "evento"), ("Data", "data"), ("Início", "horario_inicio"),
+                ("Fim", "horario_fim"), ("Responsável", "responsavel"), ("Tipo", "tipo_transmissao"),
+                ("Modalidade", "modalidade"), ("Local", "local"), ("Status", "status"),
+                ("Operador", "operador"), ("Público", "publico"), ("Obs", "observacoes")
+            ]
+            for label, attr in campos:
+                old_val = getattr(old_t, attr)
+                new_val = getattr(t_new, attr)
+                if old_val != new_val:
+                    if attr == "data":
+                        old_val = format_date_br(old_val)
+                        new_val = format_date_br(new_val)
+                    mudancas.append(f"{label}: {old_val} -> {new_val}")
+        
         for i, t in enumerate(self.transmissoes):
             if t.id == t_new.id: self.transmissoes[i] = t_new; break
+        
         self.db.salvar_todos([item.to_dict() for item in self.transmissoes])
-        self.db.registrar_historico("ALTERAÇÃO", f"Evento: {t_new.evento}")
+        
+        msg = f"Evento: {t_new.evento}"
+        if mudancas: msg += " - " + " | ".join(mudancas)
+        else: msg += " - Salvo sem mudanças perceptíveis."
+        
+        self.db.registrar_historico("ALTERAÇÃO", msg)
         self.salvar()
 
     def deletar(self, id_t):
+        t_del = next((t for t in self.transmissoes if t.id == id_t), None)
         self.transmissoes = [t for t in self.transmissoes if t.id != id_t]
         self.db.salvar_todos([item.to_dict() for item in self.transmissoes])
-        self.db.registrar_historico("EXCLUSÃO", f"ID: {id_t}")
+        detalhes = f"ID: {id_t}"
+        if t_del: detalhes += f" | Evento: {t_del.evento} | Responsável: {t_del.responsavel}"
+        self.db.registrar_historico("EXCLUSÃO", detalhes)
         self.salvar()
 
     def get_estatisticas(self):
@@ -85,3 +114,6 @@ class TransmissaoController:
         stats["horas_ano"] = formatar_segundos_para_tempo(stats["horas_ano"])
         stats["horas_totais"] = formatar_segundos_para_tempo(stats["horas_totais"])
         return stats
+
+    def get_historico(self):
+        return self.db.obter_historico()

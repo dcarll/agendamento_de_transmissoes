@@ -33,42 +33,172 @@ class TransmissionApp:
         self.page.theme = ft.Theme(color_scheme_seed=ft.Colors.BLUE_700)
 
     def init_components(self):
-        self.rail = ft.NavigationRail(
-            selected_index=0,
-            label_type=ft.NavigationRailLabelType.ALL,
-            min_width=100,
-            min_extended_width=200,
-            bgcolor="surface-variant",
-            leading=ft.Container(
-                content=ft.Icon(ft.Icons.PODCASTS, size=40, color="blue400"),
-                padding=ft.padding.symmetric(vertical=20)
-            ),
-            group_alignment=-0.9,
-            destinations=[
-                ft.NavigationRailDestination(icon=ft.Icons.DASHBOARD_OUTLINED, selected_icon=ft.Icons.DASHBOARD, label="Início"),
-                ft.NavigationRailDestination(icon=ft.Icons.CALENDAR_MONTH_OUTLINED, selected_icon=ft.Icons.CALENDAR_MONTH, label="Calendário"),
-                ft.NavigationRailDestination(icon=ft.Icons.HISTORY_OUTLINED, selected_icon=ft.Icons.HISTORY, label="Histórico"),
-                ft.NavigationRailDestination(icon=ft.Icons.ADD_CIRCLE_OUTLINE, selected_icon=ft.Icons.ADD_CIRCLE, label="Novo"),
-                ft.NavigationRailDestination(icon=ft.Icons.ASSESSMENT_OUTLINED, selected_icon=ft.Icons.ASSESSMENT, label="Relatório"),
-            ],
-            on_change=lambda e: self.navegar(e.control.selected_index)
+        # Sidebar Customizada com Design Premium
+        self.nav_items_container = ft.Column(spacing=15, horizontal_alignment=ft.CrossAxisAlignment.CENTER)
+        
+        self.nav_destinations = [
+            {"icon": ft.Icons.GRID_VIEW_ROUNDED, "label": "Início", "index": 0},
+            {"icon": ft.Icons.CALENDAR_MONTH_ROUNDED, "label": "Calendário", "index": 1},
+            {"icon": ft.Icons.HISTORY_ROUNDED, "label": "Histórico", "index": 2},
+            {"icon": ft.Icons.ADD_BOX_ROUNDED, "label": "Novo", "index": 3},
+            {"icon": ft.Icons.BAR_CHART_ROUNDED, "label": "Relatório", "index": 4},
+        ]
+
+        # Armazena os controles de item para atualização de estado
+        self.nav_controls = []
+        self._selected_index = 0
+
+        def create_nav_item(dest):
+            index = dest["index"]
+            is_selected = index == self._selected_index
+            
+            # Indicador lateral (barra vertical)
+            indicator = ft.Container(
+                width=4,
+                height=25,
+                bgcolor=ft.Colors.CYAN_400 if is_selected else ft.Colors.TRANSPARENT,
+                border_radius=2,
+                animate=ft.Animation(300, ft.AnimationCurve.DECELERATE)
+            )
+
+            icon_color = ft.Colors.CYAN_400 if is_selected else ft.Colors.WHITE38
+            text_color = ft.Colors.WHITE if is_selected else ft.Colors.WHITE38
+            
+            item = ft.Container(
+                content=ft.Column([
+                    ft.Icon(dest["icon"], color=icon_color, size=28, animate_size=ft.Animation(300, ft.AnimationCurve.DECELERATE)),
+                    ft.Text(dest["label"], color=text_color, size=11, weight=ft.FontWeight.BOLD if is_selected else ft.FontWeight.W_400)
+                ], spacing=5, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+                padding=ft.padding.symmetric(vertical=15, horizontal=10),
+                border_radius=15,
+                width=80,
+                # Efeito de glassmorphism no selecionado
+                bgcolor=ft.Colors.with_opacity(0.1, ft.Colors.CYAN_400) if is_selected else ft.Colors.TRANSPARENT,
+                on_click=lambda _: self.navegar(index),
+                on_hover=lambda e: self.on_nav_hover(e, index),
+                animate=ft.Animation(300, ft.AnimationCurve.DECELERATE),
+                data=index # Para identificar no hover
+            )
+
+            # Wrapper para incluir o indicador
+            return ft.Stack([
+                item,
+                ft.Container(content=indicator, alignment=ft.Alignment(-1, 0), padding=ft.padding.only(left=2))
+            ], width=80)
+
+        # Atualiza os itens
+        self.nav_items_container.controls = [create_nav_item(d) for d in self.nav_destinations]
+
+        # Container principal da Sidebar
+        self.sidebar = ft.Container(
+            content=ft.Column([
+                # Logo Section
+                ft.Container(
+                    content=ft.Stack([
+                        ft.Container(
+                            width=60, height=60,
+                            bgcolor=ft.Colors.with_opacity(0.1, ft.Colors.CYAN_400),
+                            border_radius=20,
+                            rotate=ft.Rotate(0.2),
+                        ),
+                        ft.Container(
+                            content=ft.Icon(ft.Icons.PODCASTS, size=35, color=ft.Colors.CYAN_400),
+                            width=60, height=60,
+                            alignment=ft.Alignment(0, 0)
+                        )
+                    ]),
+                    padding=ft.padding.only(top=30, bottom=50),
+                    alignment=ft.Alignment(0, 0)
+                ),
+                # Menu Items
+                self.nav_items_container,
+            ], spacing=0, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+            width=100,
+            bgcolor="#0F1115", # Dark Background elegante
+            border=ft.border.only(right=ft.BorderSide(1, ft.Colors.WHITE10)),
         )
 
         self.content_area = ft.Container(
             expand=True,
             padding=30,
-            animate=ft.Animation(300, ft.AnimationCurve.DECELERATE)
+            bgcolor="#13161B", # Background um pouco mais claro para a área de conteúdo
+            animate=ft.Animation(400, ft.AnimationCurve.DECELERATE)
         )
 
         self.layout = ft.Row(
-            [self.rail, ft.VerticalDivider(width=1, color="white10"), self.content_area],
+            [self.sidebar, self.content_area],
             expand=True, spacing=0,
         )
+
+    # Propriedade para compatibilidade
+    @property
+    def rail(self):
+        # Retorna um objeto que "finge" ser o rail para manter compatibilidade com o resto do código
+        class RailProxy:
+            def __init__(self, parent):
+                self.parent = parent
+            @property
+            def selected_index(self):
+                return self.parent._selected_index
+            @selected_index.setter
+            def selected_index(self, value):
+                self.parent._selected_index = value
+                self.parent.refresh_sidebar()
+        return RailProxy(self)
+
+    def on_nav_hover(self, e, index):
+        if e.data == "true":
+            if index != self._selected_index:
+                e.control.bgcolor = ft.Colors.with_opacity(0.05, ft.Colors.WHITE)
+        else:
+            if index != self._selected_index:
+                e.control.bgcolor = ft.Colors.TRANSPARENT
+        e.control.update()
+
+    def refresh_sidebar(self):
+        # Recria os itens para refletir a seleção
+        def create_nav_item(dest):
+            index = dest["index"]
+            is_selected = index == self._selected_index
+            
+            indicator = ft.Container(
+                width=4,
+                height=25,
+                bgcolor=ft.Colors.CYAN_400 if is_selected else ft.Colors.TRANSPARENT,
+                border_radius=2,
+                animate=ft.Animation(300, ft.AnimationCurve.DECELERATE)
+            )
+
+            icon_color = ft.Colors.CYAN_400 if is_selected else ft.Colors.WHITE38
+            text_color = ft.Colors.WHITE if is_selected else ft.Colors.WHITE38
+            
+            item = ft.Container(
+                content=ft.Column([
+                    ft.Icon(dest["icon"], color=icon_color, size=28, animate_size=ft.Animation(300, ft.AnimationCurve.DECELERATE)),
+                    ft.Text(dest["label"], color=text_color, size=11, weight=ft.FontWeight.BOLD if is_selected else ft.FontWeight.W_400)
+                ], spacing=5, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+                padding=ft.padding.symmetric(vertical=15, horizontal=10),
+                border_radius=15,
+                width=80,
+                bgcolor=ft.Colors.with_opacity(0.1, ft.Colors.CYAN_400) if is_selected else ft.Colors.TRANSPARENT,
+                on_click=lambda _: self.navegar(index),
+                on_hover=lambda e: self.on_nav_hover(e, index),
+                animate=ft.Animation(300, ft.AnimationCurve.DECELERATE),
+                data=index
+            )
+
+            return ft.Stack([
+                item,
+                ft.Container(content=indicator, alignment=ft.Alignment(-1, 0), padding=ft.padding.only(left=2))
+            ], width=80)
+
+        self.nav_items_container.controls = [create_nav_item(d) for d in self.nav_destinations]
+        self.sidebar.update()
 
     def _criar_view(self, index):
         """Cria a view para o índice dado. Usa dados já em memória."""
         if index == 0:
-            return DashboardView(self.controller, on_edit=self.abrir_edicao)
+            return DashboardView(self.controller, on_edit=self.abrir_edicao, on_navigate=self.navegar)
         elif index == 1:
             return CalendarioView(self.controller, on_edit=self.abrir_edicao)
         elif index == 2:

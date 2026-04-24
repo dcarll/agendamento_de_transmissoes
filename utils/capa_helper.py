@@ -302,7 +302,28 @@ def abrir_gerador_capa(page: ft.Page, titulo_evento: str):
         if p:
             try:
                 render(True).save(p)
-                page.snack_bar = ft.SnackBar(ft.Text("Salvo!")); page.snack_bar.open = True; page.update()
+                dlg.open = False
+                page.update()
+                
+                # Mostrar diálogo de sucesso com opção de abrir pasta
+                def abrir_pasta(e):
+                    pasta = os.path.dirname(p)
+                    if os.name == 'nt': os.startfile(pasta)
+                    success_dlg.open = False
+                    page.update()
+
+                success_dlg = ft.AlertDialog(
+                    title=ft.Text("Sucesso!"),
+                    content=ft.Text("Capa salva com sucesso!\nDeseja abrir a pasta onde o arquivo foi salvo?"),
+                    actions=[
+                        ft.TextButton("Não", on_click=lambda _: [setattr(success_dlg, "open", False), page.update()]),
+                        ft.ElevatedButton("Abrir Pasta", icon=ft.Icons.FOLDER_OPEN, bgcolor=ft.Colors.GREEN_700, on_click=abrir_pasta)
+                    ],
+                    actions_alignment=ft.MainAxisAlignment.END
+                )
+                page.overlay.append(success_dlg)
+                success_dlg.open = True
+                page.update()
             except: pass
 
     # --- UI ---

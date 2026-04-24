@@ -22,6 +22,12 @@ def calcular_duracao(inicio, fim):
     except Exception:
         return "00:00:00"
 
+def obter_duracao_efetiva(t):
+    """Retorna a duração calculada priorizando os horários reais."""
+    if t.horario_inicio_real and t.horario_fim_real:
+        return calcular_duracao(t.horario_inicio_real, t.horario_fim_real)
+    return calcular_duracao(t.horario_inicio, t.horario_fim)
+
 def converter_tempo_para_segundos(tempo_str):
     """Converte string HH:MM:SS para total de segundos."""
     try:
@@ -51,6 +57,22 @@ def validar_hora(hora_str):
         return True
     except:
         return False
+
+def mascarar_hora(e):
+    """Aplica máscara HH:MM em um TextField do Flet."""
+    # Pega apenas os números digitados
+    nums = "".join(filter(str.isdigit, e.control.value))[:4]
+    
+    # Formata como HH:MM apenas se houver mais de 2 números
+    if len(nums) > 2:
+        res = f"{nums[:2]}:{nums[2:]}"
+    else:
+        res = nums
+        
+    # Só atualiza a tela se o valor mudar (evita loop infinito)
+    if e.control.value != res:
+        e.control.value = res
+        e.control.update()
 
 @lru_cache(maxsize=500)
 def parse_date(data_str):
