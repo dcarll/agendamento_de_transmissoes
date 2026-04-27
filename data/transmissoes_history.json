@@ -1,5 +1,35 @@
 [
   {
+    "data_hora": "27/04/2026 07:56:01",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: II  Jornada de Literatura de Autoria Feminina (Ela/Dela) - Status: Agendado (Fase 1) -> Finalizado (Fase 5)"
+  },
+  {
+    "data_hora": "27/04/2026 07:54:44",
+    "usuario": "305369",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: II  Jornada de Literatura de Autoria Feminina (Ela/Dela) - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "27/04/2026 07:35:04",
+    "usuario": "305369",
+    "acao": "INSERÇÃO",
+    "detalhes": "Evento: Terminal bloomberg -TUCA ARENA | Data: 12/05/2026 | Início: 09:00 | Responsável: POMPEU | Local: Auditório Central"
+  },
+  {
+    "data_hora": "24/04/2026 19:31:13",
+    "usuario": "005987",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: II  Jornada de Literatura de Autoria Feminina (Ela/Dela) - Salvo sem mudanças perceptíveis."
+  },
+  {
+    "data_hora": "24/04/2026 19:31:09",
+    "usuario": "005987",
+    "acao": "ALTERAÇÃO",
+    "detalhes": "Evento: II  Jornada de Literatura de Autoria Feminina (Ela/Dela) - Salvo sem mudanças perceptíveis."
+  },
+  {
     "data_hora": "24/04/2026 14:28:12",
     "usuario": "005987",
     "acao": "INSERÇÃO",

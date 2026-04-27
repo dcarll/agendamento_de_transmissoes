@@ -27,16 +27,19 @@ class HistoricoView(ft.Column):
             focused_border_color=ft.Colors.CYAN_400
         )
         self.dd_status = ft.Dropdown(label="Status", options=[ft.dropdown.Option("Todos")] + [ft.dropdown.Option(o) for o in get_status_options()], value="Todos", on_select=lambda _: self.filtrar(), width=180, height=45, text_size=12)
-        tipos = sorted(list(set(t.tipo_transmissao for t in self.controller.transmissoes if t.tipo_transmissao)))
+        hoje_str = datetime.now().strftime("%Y-%m-%d")
+        transmissoes_passadas = [t for t in self.controller.transmissoes if normalize_date(t.data) <= hoje_str]
+        
+        tipos = sorted(list(set(t.tipo_transmissao for t in transmissoes_passadas if t.tipo_transmissao)))
         self.dd_tipo = ft.Dropdown(label="Tipo", options=[ft.dropdown.Option("Todos")] + [ft.dropdown.Option(o) for o in tipos], value="Todos", on_select=lambda _: self.filtrar(), width=150, height=45, text_size=12)
         
-        modalidades = sorted(list(set(t.modalidade for t in self.controller.transmissoes if t.modalidade)))
+        modalidades = sorted(list(set(t.modalidade for t in transmissoes_passadas if t.modalidade)))
         self.dd_modalidade = ft.Dropdown(label="Modalidade", options=[ft.dropdown.Option("Todos")] + [ft.dropdown.Option(o) for o in modalidades], value="Todos", on_select=lambda _: self.filtrar(), width=150, height=45, text_size=12)
         
-        locais = sorted(list(set(t.local for t in self.controller.transmissoes if t.local)))
+        locais = sorted(list(set(t.local for t in transmissoes_passadas if t.local)))
         self.dd_local = ft.Dropdown(label="Local", options=[ft.dropdown.Option("Todos")] + [ft.dropdown.Option(l) for l in locais], value="Todos", on_select=lambda _: self.filtrar(), width=180, height=45, text_size=12)
         
-        operadores = sorted(list(set(t.operador for t in self.controller.transmissoes if hasattr(t, 'operador') and t.operador)))
+        operadores = sorted(list(set(t.operador for t in transmissoes_passadas if hasattr(t, 'operador') and t.operador)))
         self.dd_operador = ft.Dropdown(label="Operador", options=[ft.dropdown.Option("Todos")] + [ft.dropdown.Option(o) for o in operadores], value="Todos", on_select=lambda _: self.filtrar(), width=180, height=45, text_size=12)
 
         self.dd_periodo_tipo = ft.Dropdown(
@@ -284,11 +287,10 @@ class HistoricoView(ft.Column):
             elif periodo_tipo == "Personalizado":
                 if dt_ini and dt_t < dt_ini: continue
                 if dt_fim and dt_t > dt_fim: continue
-            else:
-                # Se for "Todos", respeita a regra padrão de não mostrar futuro no histórico
-                # a menos que haja outros filtros ativos
-                if not termo and status == "Todos" and tipo == "Todos" and modalidade == "Todos" and local == "Todos" and operador == "Todos":
-                    if dt_str > hoje_str: continue
+            
+            # Garantir que no histórico só apareçam transmissões passadas (incluindo hoje)
+            if dt_str > hoje_str:
+                continue
 
             if termo:
                 # Localiza em todos os campos relevantes
@@ -404,17 +406,19 @@ class HistoricoView(ft.Column):
         except: pass
 
     def atualizar(self): 
-        # Atualiza as opções dos dropdowns antes de filtrar
-        tipos = sorted(list(set(t.tipo_transmissao for t in self.controller.transmissoes if t.tipo_transmissao)))
+        hoje_str = datetime.now().strftime("%Y-%m-%d")
+        transmissoes_passadas = [t for t in self.controller.transmissoes if normalize_date(t.data) <= hoje_str]
+        
+        tipos = sorted(list(set(t.tipo_transmissao for t in transmissoes_passadas if t.tipo_transmissao)))
         self.dd_tipo.options = [ft.dropdown.Option("Todos")] + [ft.dropdown.Option(o) for o in tipos]
         
-        modalidades = sorted(list(set(t.modalidade for t in self.controller.transmissoes if t.modalidade)))
+        modalidades = sorted(list(set(t.modalidade for t in transmissoes_passadas if t.modalidade)))
         self.dd_modalidade.options = [ft.dropdown.Option("Todos")] + [ft.dropdown.Option(o) for o in modalidades]
         
-        locais = sorted(list(set(t.local for t in self.controller.transmissoes if t.local)))
+        locais = sorted(list(set(t.local for t in transmissoes_passadas if t.local)))
         self.dd_local.options = [ft.dropdown.Option("Todos")] + [ft.dropdown.Option(l) for l in locais]
         
-        operadores = sorted(list(set(t.operador for t in self.controller.transmissoes if hasattr(t, 'operador') and t.operador)))
+        operadores = sorted(list(set(t.operador for t in transmissoes_passadas if hasattr(t, 'operador') and t.operador)))
         self.dd_operador.options = [ft.dropdown.Option("Todos")] + [ft.dropdown.Option(o) for o in operadores]
         
         # Manter o valor atual se ele ainda existir, senão volta para "Todos"
@@ -836,9 +840,10 @@ class HistoricoView(ft.Column):
             elif periodo_tipo == "Personalizado":
                 if dt_ini and dt_t < dt_ini: continue
                 if dt_fim and dt_t > dt_fim: continue
-            else:
-                if not termo and status == "Todos" and tipo == "Todos" and modalidade == "Todos" and local == "Todos" and operador == "Todos":
-                    if dt_str > hoje_str: continue
+            
+            # Garantir que no histórico só apareçam transmissões passadas (incluindo hoje)
+            if dt_str > hoje_str:
+                continue
 
             # 2. Busca por termo
             if termo:
@@ -857,7 +862,8 @@ class HistoricoView(ft.Column):
         return eventos_filtrados
 
     def update_year_menu(self):
-        anos_disp = sorted(list(set(parse_date(t.data).year for t in self.controller.transmissoes if parse_date(t.data))), reverse=True)
+        hoje_str = datetime.now().strftime("%Y-%m-%d")
+        anos_disp = sorted(list(set(parse_date(t.data).year for t in self.controller.transmissoes if parse_date(t.data) and normalize_date(t.data) <= hoje_str)), reverse=True)
         if not anos_disp: anos_disp = [datetime.now().year]
         self.menu_ano.items = [ft.PopupMenuItem(content=ft.Text(str(a)), on_click=lambda e, a=a: self.set_filtro_ano_bar(a)) for a in anos_disp]
 
@@ -883,7 +889,8 @@ class HistoricoView(ft.Column):
         
         # Filtra meses que possuem eventos no ano selecionado
         ano_selecionado = int(self.dd_filtro_ano.value) if self.dd_filtro_ano.value else datetime.now().year
-        meses_com_eventos = set(parse_date(t.data).month for t in self.controller.transmissoes if parse_date(t.data) and parse_date(t.data).year == ano_selecionado)
+        hoje_str = datetime.now().strftime("%Y-%m-%d")
+        meses_com_eventos = set(parse_date(t.data).month for t in self.controller.transmissoes if parse_date(t.data) and parse_date(t.data).year == ano_selecionado and normalize_date(t.data) <= hoje_str)
         
         for i, nome in enumerate(meses_abrev):
             mes_num = i + 1
