@@ -192,13 +192,15 @@ def check_status_match(status, filtro):
     if not filtro or filtro == "Todos":
         return True
     
+    # Normalizamos o filtro caso ele venha em formato simplificado (ex: "Finalizado")
+    normalized_filtro = _LEGACY_MAP.get(filtro, filtro)
+    
     # Se o filtro não for uma opção de status conhecida, não aplicamos o match por status aqui
-    # Isso permite que a busca por texto (ex: nome do evento) continue funcionando no mesmo campo
     options = get_status_options()
-    if filtro not in options:
+    if normalized_filtro not in options:
         return False
         
     info_s = get_status_info(status)
-    info_f = get_status_info(filtro)
+    info_f = get_status_info(normalized_filtro)
     
     return info_s["phase"] == info_f["phase"]

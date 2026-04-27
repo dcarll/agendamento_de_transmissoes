@@ -1,6 +1,6 @@
 import flet as ft
 from datetime import datetime
-from utils.helpers import parse_date, converter_tempo_para_segundos, formatar_segundos_para_tempo, obter_duracao_efetiva, format_date_br, check_status_match
+from utils.helpers import parse_date, converter_tempo_para_segundos, formatar_segundos_para_tempo, obter_duracao_efetiva, format_date_br, check_status_match, get_status_options
 import asyncio
 import os
 import tkinter as tk
@@ -75,8 +75,8 @@ class RelatorioView(ft.Column):
         # Novos Filtros
         self.dd_status = ft.Dropdown(
             label="Status", 
-            options=[ft.dropdown.Option("Todos"), ft.dropdown.Option("Agendado"), ft.dropdown.Option("Finalizado"), ft.dropdown.Option("Cancelado")],
-            value="Todos", on_select=self.on_filtro_change, border=ft.InputBorder.NONE, width=140
+            options=[ft.dropdown.Option("Todos")] + [ft.dropdown.Option(o) for o in get_status_options()],
+            value="Todos", on_select=self.on_filtro_change, border=ft.InputBorder.NONE, width=180
         )
         
         modalidades = sorted(list(set(t.modalidade for t in self.controller.transmissoes if t.modalidade)))
