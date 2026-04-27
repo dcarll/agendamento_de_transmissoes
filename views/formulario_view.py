@@ -5,12 +5,13 @@ from utils.helpers import validar_hora, normalize_date, mascarar_hora
 from datetime import datetime
 
 class FormularioView(ft.Column):
-    def __init__(self, controller: TransmissaoController, on_back, transmissao_edit: Transmissao = None):
+    def __init__(self, controller: TransmissaoController, on_back, transmissao_edit: Transmissao = None, default_date=None):
         super().__init__(expand=True, scroll=ft.ScrollMode.ADAPTIVE, spacing=20)
         self.controller = controller
         self.on_back = on_back
         self.edit_mode = transmissao_edit is not None
         self.t_edit = transmissao_edit
+        self.default_date = default_date
         self.init_ui()
 
     def wrap_field_gradient(self, control, expand=False):
@@ -44,6 +45,8 @@ class FormularioView(ft.Column):
             from utils.helpers import parse_date as _pd
             _dt = _pd(self.t_edit.data)
             data_display = _dt.strftime("%d/%m/%Y") if _dt else self.t_edit.data
+        elif self.default_date:
+            data_display = self.default_date.strftime("%d/%m/%Y")
         else:
             data_display = datetime.now().strftime("%d/%m/%Y")
         

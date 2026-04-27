@@ -381,7 +381,7 @@ class HistoricoView(ft.Column):
                     ft.Container(
                         content=ft.GestureDetector(
                             content=ft.Text(t.evento, size=13, weight=ft.FontWeight.W_500, color=ft.Colors.BLUE_200),
-                            on_tap=lambda _, item=t: mostrar_detalhes_transmissao(self.page, item, self.controller, self.atualizar),
+                            on_tap=lambda _, item=t: mostrar_detalhes_transmissao(self.page, item, self.controller, self.atualizar, on_edit=self.on_edit),
                             on_secondary_tap=lambda e, item=t: abrir_menu_contexto(self.page, item, self.controller, self.on_edit, self.confirmar_exclusao, self.atualizar),
                         ),
                         width=300, 
@@ -395,7 +395,7 @@ class HistoricoView(ft.Column):
                 ft.DataCell(ft.Text(t.operador or "-", size=12)),
                 ft.DataCell(ft.Container(content=ft.Text(status_info["label"], size=10, weight=ft.FontWeight.BOLD, color=ft.Colors.BLACK), bgcolor=status_info["color"], padding=ft.padding.symmetric(horizontal=10, vertical=4), border_radius=8)),
                 ft.DataCell(ft.Row([
-                    ft.IconButton(ft.Icons.INFO_OUTLINE, icon_size=18, icon_color=ft.Colors.CYAN_200, on_click=lambda _, item=t: mostrar_detalhes_transmissao(self.page, item, self.controller, self.atualizar)),
+                    ft.IconButton(ft.Icons.INFO_OUTLINE, icon_size=18, icon_color=ft.Colors.CYAN_200, on_click=lambda _, item=t: mostrar_detalhes_transmissao(self.page, item, self.controller, self.atualizar, on_edit=self.on_edit)),
                     ft.IconButton(ft.Icons.EDIT, icon_size=18, icon_color=ft.Colors.BLUE_200, on_click=lambda _, item=t: self.on_edit(item)),
                     ft.IconButton(ft.Icons.DELETE, icon_size=18, icon_color=ft.Colors.RED_200, on_click=lambda _, item=t: self.confirmar_exclusao(item)),
                 ], spacing=0)),

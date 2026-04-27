@@ -83,7 +83,7 @@ def abrir_menu_contexto(page: ft.Page, t: Transmissao, controller, on_edit, on_d
 
     page.overlay.append(dlg); dlg.open = True; page.update()
 
-def mostrar_detalhes_transmissao(page: ft.Page, t: Transmissao, controller=None, on_update=None):
+def mostrar_detalhes_transmissao(page: ft.Page, t: Transmissao, controller=None, on_update=None, on_edit=None):
     status_info = get_status_info(t.status)
     color_status = status_info["color"]
     fields = {}
@@ -353,6 +353,22 @@ def mostrar_detalhes_transmissao(page: ft.Page, t: Transmissao, controller=None,
         on_click=lambda _: abrir_gerador_capa(page, t.evento)
     )
 
-    dlg = ft.AlertDialog(content=ft.Container(content=ft.Column([header, ft.Container(content=details_grid, expand=True)], spacing=10, horizontal_alignment=ft.CrossAxisAlignment.STRETCH), width=800, height=750, padding=10), actions=[btn_gerar_capa, btn_salvar, ft.TextButton("Fechar", on_click=lambda e: fechar_dialogo(e, dlg))], actions_alignment=ft.MainAxisAlignment.END, shape=ft.RoundedRectangleBorder(radius=20), bgcolor=ft.Colors.GREY_900)
+    def acao_editar(e):
+        dlg.open = False
+        page.update()
+        if on_edit:
+            on_edit(t)
+
+    btn_editar = ft.ElevatedButton(
+        "Editar Transmissão",
+        icon=ft.Icons.EDIT,
+        bgcolor=ft.Colors.BLUE_700,
+        color=ft.Colors.WHITE,
+        on_click=acao_editar,
+        visible=True if on_edit else False
+    )
+
+    dlg = ft.AlertDialog(content=ft.Container(content=ft.Column([header, ft.Container(content=details_grid, expand=True)], spacing=10, horizontal_alignment=ft.CrossAxisAlignment.STRETCH), width=800, height=750, padding=10), actions=[btn_editar, btn_gerar_capa, btn_salvar, ft.TextButton("Fechar", on_click=lambda e: fechar_dialogo(e, dlg))], actions_alignment=ft.MainAxisAlignment.END, shape=ft.RoundedRectangleBorder(radius=20), bgcolor=ft.Colors.GREY_900)
     def fechar_dialogo(e, d): d.open = False; page.update()
+
     page.overlay.append(dlg); dlg.open = True; page.update()

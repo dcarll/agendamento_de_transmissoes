@@ -7,6 +7,7 @@ import asyncio
 import os
 import tkinter as tk
 from tkinter import filedialog
+import calendar
 
 try:
     from docx import Document; from docx.shared import Pt
@@ -21,7 +22,7 @@ class CalendarioView(ft.Column):
         self.on_edit = on_edit
         self.pagina_atual = 0
         self.itens_por_página = 20
-        self.view_mode = "list"
+        self.view_mode = "calendario"
         self.selection_mode = False
         self.selected_ids = set()
         
@@ -139,7 +140,21 @@ class CalendarioView(ft.Column):
             height=45
         )
         
-        self.btn_view_mode = ft.IconButton(ft.Icons.GRID_VIEW if self.view_mode == "list" else ft.Icons.LIST, on_click=self.toggle_view_mode, tooltip="Alternar Visualização")
+        self.dd_view_mode = ft.Dropdown(
+            label="Modo",
+            options=[
+                ft.dropdown.Option("calendario", "📅 Calendário"),
+                ft.dropdown.Option("list", "📋 Lista"),
+                ft.dropdown.Option("grid", "🃏 Cards"),
+            ],
+            value=self.view_mode,
+            on_select=self.on_view_mode_change,
+            width=160, height=45, text_size=13,
+            color=ft.Colors.CYAN_400,
+            border_color=ft.Colors.CYAN_400,
+            focused_border_color=ft.Colors.CYAN_200,
+            label_style=ft.TextStyle(color=ft.Colors.CYAN_200, weight=ft.FontWeight.BOLD),
+        )
         self.txt_count = ft.Text("0 eventos encontrados", color=ft.Colors.WHITE70, size=12)
         self.grid_container = ft.Column(expand=True, scroll=ft.ScrollMode.ADAPTIVE)
         
@@ -167,7 +182,7 @@ class CalendarioView(ft.Column):
                 self.dd_tipo, 
                 self.dd_modalidade, 
                 self.dd_ordem, 
-                self.btn_view_mode
+                self.dd_view_mode
             ], spacing=10, wrap=True),
 
             self.filter_bar,
@@ -176,11 +191,10 @@ class CalendarioView(ft.Column):
         ]
         self.update_year_menu()
         self.on_periodo_change(None)
-        self.init_ui()
+        # self.init_ui() # Removido para evitar chamada duplicada (já chamado em on_periodo_change)
 
-    def toggle_view_mode(self, e):
-        self.view_mode = "grid" if self.view_mode == "list" else "list"
-        self.btn_view_mode.icon = ft.Icons.GRID_VIEW if self.view_mode == "list" else ft.Icons.LIST
+    def on_view_mode_change(self, e):
+        self.view_mode = self.dd_view_mode.value
         self.init_ui()
 
     def on_periodo_change(self, e):
@@ -273,15 +287,21 @@ class CalendarioView(ft.Column):
         if self.view_mode == "list":
             container_itens = ft.Column(spacing=10, expand=True)
             for t in itens: container_itens.controls.append(self.create_event_row(t))
-        else:
+        elif self.view_mode == "grid":
             container_itens = ft.ResponsiveRow(spacing=20, run_spacing=20)
             for t in itens: container_itens.controls.append(self.create_event_card(t))
-        pag = ft.Row([ft.IconButton(ft.Icons.ARROW_BACK_IOS_NEW, on_click=lambda _: self.mudar_pagina(-1), disabled=self.pagina_atual == 0), ft.Text(f"Página {self.pagina_atual + 1} de {max(1, tp)}", weight=ft.FontWeight.BOLD), ft.IconButton(ft.Icons.ARROW_FORWARD_IOS, on_click=lambda _: self.mudar_pagina(1), disabled=self.pagina_atual >= tp - 1)], alignment=ft.MainAxisAlignment.CENTER)
+        else: # modo calendario
+            container_itens = self.create_calendar_view()
+            
+        if self.view_mode != "calendario":
+            pag = ft.Row([ft.IconButton(ft.Icons.ARROW_BACK_IOS_NEW, on_click=lambda _: self.mudar_pagina(-1), disabled=self.pagina_atual == 0), ft.Text(f"Página {self.pagina_atual + 1} de {max(1, tp)}", weight=ft.FontWeight.BOLD), ft.IconButton(ft.Icons.ARROW_FORWARD_IOS, on_click=lambda _: self.mudar_pagina(1), disabled=self.pagina_atual >= tp - 1)], alignment=ft.MainAxisAlignment.CENTER)
+        else:
+            pag = ft.Container()
         
         grid_controls = []
         
         # Barra de "Selecionar Todos" (visível apenas no modo de seleção)
-        if self.selection_mode:
+        if self.selection_mode and self.view_mode != "calendario":
             todos_ids = set(t.id for t in self.get_lista_filtrada())
             todos_selecionados = len(todos_ids) > 0 and todos_ids.issubset(self.selected_ids)
             alguns_selecionados = len(self.selected_ids) > 0 and not todos_selecionados
@@ -741,3 +761,233 @@ class CalendarioView(ft.Column):
         except: pass
 
     def mudar_pagina(self, delta): self.pagina_atual += delta; self.init_ui()
+
+    def create_calendar_view(self):
+        mes = int(self.dd_filtro_mes.value) if self.dd_filtro_mes.value else datetime.now().month
+        ano = int(self.dd_filtro_ano.value) if self.dd_filtro_ano.value else datetime.now().year
+        termo = self.txt_busca.value.lower().strip() if self.txt_busca.value else ""
+        
+        # Filtros ativos
+        filtro_status = self.dd_status.value
+        filtro_tipo = self.dd_tipo.value
+        filtro_modalidade = self.dd_modalidade.value
+        
+        # Obtém eventos do mês, aplicando filtros
+        all_events = self.controller.transmissoes
+        events_by_day = {}
+        for t in all_events:
+            dt = parse_date(t.data)
+            if not dt or dt.month != mes or dt.year != ano:
+                continue
+            # Aplica filtros
+            if filtro_status != "Todos" and t.status != filtro_status:
+                continue
+            if filtro_tipo != "Todos" and t.tipo_transmissao != filtro_tipo:
+                continue
+            if filtro_modalidade != "Todos" and t.modalidade != filtro_modalidade:
+                continue
+            # Aplica busca
+            if termo:
+                if not (termo in t.evento.lower() or termo in t.responsavel.lower() or termo in (t.local or "").lower()):
+                    continue
+            d = dt.day
+            if d not in events_by_day:
+                events_by_day[d] = []
+            events_by_day[d].append(t)
+        
+        cal = calendar.Calendar(firstweekday=6)
+        month_days = cal.monthdayscalendar(ano, mes)
+        
+        headers = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"]
+        header_row = ft.Row(
+            [ft.Container(
+                content=ft.Text(h, weight=ft.FontWeight.BOLD, size=12, color=ft.Colors.WHITE38),
+                expand=1,
+                alignment=ft.Alignment(0, 0),
+                padding=ft.padding.only(bottom=10)
+            ) for h in headers],
+            spacing=10
+        )
+        
+        calendar_rows = [header_row]
+        for week in month_days:
+            week_row = ft.Row(spacing=10, expand=False)
+            for day in week:
+                if day == 0:
+                    week_row.controls.append(ft.Container(expand=1, height=120))
+                else:
+                    events = events_by_day.get(day, [])
+                    week_row.controls.append(self.create_day_cell(day, events, mes, ano, termo))
+            calendar_rows.append(week_row)
+            
+        return ft.Container(
+            content=ft.Column(calendar_rows, spacing=8, expand=True),
+            padding=ft.padding.only(bottom=30)
+        )
+
+    def create_day_cell(self, day, events, mes, ano, termo=""):
+        hoje = datetime.now()
+        is_hoje = hoje.day == day and hoje.month == mes and hoje.year == ano
+        
+        bg_color = ft.Colors.with_opacity(0.06, ft.Colors.WHITE)
+        border_color = ft.Colors.with_opacity(0.08, ft.Colors.WHITE)
+        border_width = 1
+        
+        if is_hoje:
+            border_color = ft.Colors.CYAN_400
+            border_width = 2
+            bg_color = ft.Colors.with_opacity(0.15, ft.Colors.CYAN_900)
+
+        if events:
+            active_events = [e for e in events if e.status and not (e.status.startswith("Finalizado") or e.status == "Cancelado")]
+            target_event = active_events[0] if active_events else events[0]
+            status_color = get_status_info(target_event.status)["color"]
+            bg_color = ft.Colors.with_opacity(0.2, status_color)
+            if not is_hoje:
+                border_color = ft.Colors.with_opacity(0.5, status_color)
+
+        # Resumo das transmissões dentro da célula
+        event_summaries = ft.Column(spacing=3, tight=True)
+        for t in events[:3]:
+            s_info = get_status_info(t.status)
+            # Destaque de busca: texto amarelo se contiver o termo
+            has_match = termo and (termo in t.evento.lower() or termo in t.responsavel.lower())
+            txt_color = ft.Colors.YELLOW_300 if has_match else ft.Colors.WHITE
+            txt_weight = ft.FontWeight.BOLD if has_match else ft.FontWeight.W_500
+            
+            event_summaries.controls.append(
+                ft.Container(
+                    content=ft.Text(
+                        f"{t.horario_inicio} {t.evento}",
+                        size=11, weight=txt_weight,
+                        color=txt_color, max_lines=1,
+                        overflow=ft.TextOverflow.ELLIPSIS
+                    ),
+                    bgcolor=ft.Colors.with_opacity(0.5, s_info["color"]),
+                    padding=ft.padding.symmetric(horizontal=5, vertical=2),
+                    border_radius=4,
+                    border=ft.border.all(1, ft.Colors.YELLOW_400) if has_match else None,
+                    on_click=lambda _, item=t: mostrar_detalhes_transmissao(self.page, item, self.controller, self.atualizar, on_edit=self.on_edit),
+                )
+            )
+
+        if len(events) > 3:
+            event_summaries.controls.append(
+                ft.Text(f"+ {len(events)-3} mais", size=10, italic=True, color=ft.Colors.WHITE54)
+            )
+
+        # Cabeçalho do dia
+        day_header = ft.Row([
+            ft.Text(str(day), weight=ft.FontWeight.BOLD, size=15,
+                    color=ft.Colors.WHITE if events or is_hoje else ft.Colors.WHITE38),
+            ft.Container(
+                content=ft.Text(str(len(events)), size=9, color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD),
+                bgcolor=ft.Colors.with_opacity(0.3, ft.Colors.WHITE),
+                border_radius=8, width=18, height=18,
+                alignment=ft.Alignment(0, 0),
+            ) if events else ft.Container(),
+        ], alignment=ft.MainAxisAlignment.SPACE_BETWEEN)
+
+        return ft.Container(
+            content=ft.Column([day_header, event_summaries], spacing=3),
+            padding=ft.padding.only(left=6, right=6, top=5, bottom=4),
+            bgcolor=bg_color,
+            expand=1,
+            height=120,
+            border_radius=10,
+            border=ft.border.all(border_width, border_color),
+            # Clique esquerdo na área vazia → menu de contexto
+            on_click=lambda _: self.abrir_menu_dia(day, events, mes, ano),
+            # Clique longo (alternativa ao botão direito) → abre lista de transmissões
+            on_long_press=lambda _: self.show_day_details(day, events) if events else None,
+        )
+
+    def show_day_details(self, day, events):
+        if events:
+            self.mostrar_lista_dia(day, events, int(self.dd_filtro_mes.value), int(self.dd_filtro_ano.value))
+
+    def mostrar_lista_dia(self, day, events, mes, ano):
+        list_items = []
+        for t in events:
+            s_info = get_status_info(t.status)
+            list_items.append(
+                ft.Container(
+                    content=ft.ListTile(
+                        leading=ft.Container(width=12, height=12, border_radius=6, bgcolor=s_info["color"]),
+                        title=ft.Text(f"{t.horario_inicio} - {t.evento}", weight=ft.FontWeight.BOLD, size=14),
+                        subtitle=ft.Text(f"👤 {t.responsavel}  |  📍 {t.local or 'N/A'}", size=12, color=ft.Colors.WHITE38),
+                        on_click=lambda _, item=t: self.abrir_detalhe_e_fechar(item, dlg),
+                    ),
+                    bgcolor=ft.Colors.with_opacity(0.05, ft.Colors.WHITE),
+                    border_radius=10,
+                    margin=ft.margin.only(bottom=5)
+                )
+            )
+        
+        def fechar(e):
+            dlg.open = False
+            self.page.update()
+
+        dlg = ft.AlertDialog(
+            title=ft.Row([
+                ft.Icon(ft.Icons.LIST_ALT, color=ft.Colors.CYAN_400), 
+                ft.Text(f"Transmissões de {day:02d}/{mes:02d}/{ano}", size=18, weight=ft.FontWeight.BOLD)
+            ], spacing=10),
+            content=ft.Container(
+                content=ft.Column(list_items, scroll=ft.ScrollMode.AUTO, tight=True, spacing=5),
+                width=550
+            ),
+            actions=[ft.TextButton("Fechar", on_click=fechar)],
+            shape=ft.RoundedRectangleBorder(radius=15),
+            bgcolor=ft.Colors.GREY_900,
+        )
+        self.page.overlay.append(dlg)
+        dlg.open = True
+        self.page.update()
+
+    def abrir_detalhe_e_fechar(self, item, dlg):
+        dlg.open = False
+        self.page.update()
+        mostrar_detalhes_transmissao(self.page, item, self.controller, self.atualizar)
+
+    def abrir_menu_dia(self, day, events, mes, ano):
+        from datetime import date
+        dt_selecionada = date(ano, mes, day)
+        
+        def acao_ver(e):
+            menu_dlg.open = False
+            self.page.update()
+            if len(events) > 1:
+                self.mostrar_lista_dia(day, events, mes, ano)
+            elif len(events) == 1:
+                mostrar_detalhes_transmissao(self.page, events[0], self.controller, self.atualizar, on_edit=self.on_edit)
+
+        def acao_adicionar(e):
+            menu_dlg.open = False
+            self.page.update()
+            self.on_edit(None, default_date=dt_selecionada)
+
+        def fechar_menu(e):
+            menu_dlg.open = False
+            self.page.update()
+
+        menu_dlg = ft.AlertDialog(
+            title=ft.Row([ft.Icon(ft.Icons.CALENDAR_TODAY, color=ft.Colors.CYAN_400), ft.Text(f"Dia {day:02d}/{mes:02d}")]),
+            content=ft.Column([
+                ft.TextButton(
+                    content=ft.Row([ft.Icon(ft.Icons.LIST, color=ft.Colors.BLUE_200), ft.Text("Ver Transmissões", color=ft.Colors.WHITE, size=14)], spacing=10),
+                    on_click=acao_ver,
+                    disabled=not events
+                ),
+                ft.TextButton(
+                    content=ft.Row([ft.Icon(ft.Icons.ADD_BOX, color=ft.Colors.GREEN_400), ft.Text("Adicionar Evento", color=ft.Colors.WHITE, size=14)], spacing=10),
+                    on_click=acao_adicionar
+                ),
+            ], tight=True, spacing=10),
+            actions=[ft.TextButton("Fechar", on_click=fechar_menu)],
+            shape=ft.RoundedRectangleBorder(radius=15),
+            bgcolor=ft.Colors.GREY_900,
+        )
+        self.page.overlay.append(menu_dlg)
+        menu_dlg.open = True
+        self.page.update()

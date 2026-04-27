@@ -234,7 +234,7 @@ class DashboardView(ft.Column):
                     ),
                     # Ações rápidas
                     ft.Row([
-                        ft.IconButton(ft.Icons.INFO_OUTLINE, icon_size=16, icon_color=ft.Colors.CYAN_200, tooltip="Detalhes", on_click=lambda _: mostrar_detalhes_transmissao(self.page, t, self.controller, self.atualizar_dados)),
+                        ft.IconButton(ft.Icons.INFO_OUTLINE, icon_size=16, icon_color=ft.Colors.CYAN_200, tooltip="Detalhes", on_click=lambda _: mostrar_detalhes_transmissao(self.page, t, self.controller, self.atualizar_dados, on_edit=self.on_edit)),
                         ft.IconButton(ft.Icons.EDIT_NOTE, icon_size=18, icon_color=ft.Colors.BLUE_200, tooltip="Editar", on_click=lambda _: self.on_edit(t)),
                     ], spacing=0)
                 ], spacing=15),
@@ -244,7 +244,7 @@ class DashboardView(ft.Column):
                 border=ft.border.all(1, ft.Colors.with_opacity(0.05, ft.Colors.WHITE)),
                 on_hover=lambda e: self.on_row_hover(e)
             ),
-            on_tap=lambda _: mostrar_detalhes_transmissao(self.page, t, self.controller, self.atualizar_dados),
+            on_tap=lambda _: mostrar_detalhes_transmissao(self.page, t, self.controller, self.atualizar_dados, on_edit=self.on_edit),
             on_secondary_tap=lambda e: abrir_menu_contexto(self.page, t, self.controller, self.on_edit, self.confirmar_exclusao, self.atualizar_dados),
         )
 

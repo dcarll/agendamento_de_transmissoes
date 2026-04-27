@@ -283,10 +283,11 @@ class TransmissionApp:
         except Exception as e:
             print(f"Erro ao recarregar interface: {e}")
 
-    def abrir_edicao(self, transmissao):
+    def abrir_edicao(self, transmissao, default_date=None):
         self.content_area.content = FormularioView(
             self.controller,
             on_back=lambda: self.navegar(0),
-            transmissao_edit=transmissao
+            transmissao_edit=transmissao,
+            default_date=default_date
         )
         self.page.update()
